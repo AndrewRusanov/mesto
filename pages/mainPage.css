@@ -1,6 +1,7 @@
 /*Подключение стилей normalize.css*/
 @import url(../vendor/normalize.css);
 /* Подключение стилей .fonts */
+@import url(../fonts/inter.css);
 /* Подключение стилей .background */
 @import url(../blocks/background/background.css);
 /* Подключение стилей .page */
@@ -9,3 +10,7 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
+/* Подключение стилей .profile */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
