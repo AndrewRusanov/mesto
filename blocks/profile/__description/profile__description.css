@@ -1,0 +1,8 @@
+.profile__description {
+  font-family: 'Inter';
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 400;
+  margin: 0;
+  max-height: 18px;
+}
