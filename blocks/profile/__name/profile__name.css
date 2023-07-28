@@ -6,4 +6,7 @@
   margin: 0;
   max-height: 39px;
   align-self: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
