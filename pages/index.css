@@ -31,3 +31,6 @@
 @import url(../blocks/element/__mask/element__mask.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
+/* Подключение стилей .footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);

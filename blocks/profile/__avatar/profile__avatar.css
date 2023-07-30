@@ -5,3 +5,10 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 1279px) {
+  .profile__avatar {
+    align-self: center;
+    margin-bottom: 26px;
+  }
+}
