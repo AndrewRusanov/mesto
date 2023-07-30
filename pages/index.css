@@ -22,3 +22,12 @@
 @import url(../blocks/profile/__button-edit/profile__button-edit.css);
 @import url(../blocks/profile/__button/_center/profile__button_center.css);
 @import url(../blocks/profile/__button-add/profile__button-add.css);
+/* Подключение стилей .elements */
+@import url(../blocks/elements/elements.css);
+/* Подключение стилей .element */
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__bottom/element__bottom.css);
+@import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/element/__mask/element__mask.css);
+@import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
