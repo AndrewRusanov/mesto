@@ -1,10 +1,9 @@
 // Находим форму в DOM
-let formElement = document.querySelector('.popup'); // Воспользуйтесь методом querySelector()
-
+let formElement = document.querySelector('.popup__container'); // Воспользуйтесь методом querySelector()
+console.log(formElement);
 // Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__field-name'); // Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.popup__field-job'); // Воспользуйтесь инструментом .querySelector()
-let saveButton = document.querySelector('.popup__button');
+let nameInput = formElement.querySelector('.popup__field-name'); // Воспользуйтесь инструментом .querySelector()
+let jobInput = formElement.querySelector('.popup__field-job'); // Воспользуйтесь инструментом .querySelector()
 
 let nameProfile = document.querySelector('.profile__name');
 let jobProfile = document.querySelector('.profile__description');
@@ -40,9 +39,9 @@ function handleFormSubmit(evt) {
   // Вставьте новые значения с помощью textContent
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
+  closePopup();
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', handleFormSubmit);
-saveButton.addEventListener('click', closePopup);

@@ -6,144 +6,147 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
-  <body class="background">
+  <body class="main">
     <div class="page">
       <header class="header">
         <img class="header__logo" src="./images/header__logo.svg" alt="Логотип проекта 'Место'" />
-        <hr class="header__line" />
+        <!-- <hr class="header__line" /> -->
       </header>
-      <section class="profile">
-        <div class="profile__flex">
-          <img class="profile__avatar" src="./images/profile__avatar.png" alt="Аватар профиля" />
-          <div class="profile__info">
-            <p class="profile__name">Жак-Ив Кусто</p>
-            <button class="profile__button profile__button_end">
-              <img
-                class="profile__button-edit"
-                src="./images/profile__edit-button.svg"
-                alt="Кнопка редактирования"
-              />
-            </button>
-            <p class="profile__description">Исследователь океана</p>
+      <main>
+        <section class="profile">
+          <div class="profile__flex">
+            <img class="profile__avatar" src="./images/profile__avatar.png" alt="Аватар профиля" />
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__button profile__button_position_end">
+                <img
+                  class="profile__button-edit"
+                  src="./images/profile__edit-button.svg"
+                  alt="Кнопка редактирования"
+                />
+              </button>
+              <p class="profile__description">Исследователь океана</p>
+            </div>
           </div>
-        </div>
-        <button class="profile__button profile__button_center">
-          <img
-            class="profile__button-add"
-            src="./images/profile__add-button.svg"
-            alt="Кнопка добавления изображения"
-          />
-        </button>
-      </section>
-      <section class="elements">
-        <div class="element">
-          <img
-            class="element__mask"
-            src="./images/karachaevsk.png"
-            alt="Карачаевск"
-          />
-          <div class="element__bottom">
-            <p class="element__text">Карачаевск</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
-          <div class="element__bottom">
-            <p class="element__text">Гора Эльбрус</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
-          <div class="element__bottom">
-            <p class="element__text">Домбай</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
-          <div class="element__bottom">
-            <p class="element__text">Домбай</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img
-            class="element__mask"
-            src="./images/karachaevsk.png"
-            alt="Карачаевск"
-          />
-          <div class="element__bottom">
-            <p class="element__text">Карачаевск</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
-          <div class="element__bottom">
-            <p class="element__text">Гора Эльбрус</p>
-            <button class="element__like">
-              <img
-                class="element__like-button"
-                src="./images/like__button.svg"
-                alt="Кнопка лайка"
-              />
-            </button>
-          </div>
-        </div>
-      </section>
-      <footer class="footer">
-        <p class="footer__text">&copy;2023 Mesto Russia</p>
-      </footer>
-      <div class="popup popup_opened">
-        <form class="popup__container">
-          <button class="popup__close-button">
+          <button type="button" class="profile__button profile__button_position_center">
             <img
-              class="popup__close-icon"
-              src="./images/close-icon.svg"
-              alt="Кнопка закрытия окна"
+              class="profile__button-add"
+              src="./images/profile__add-button.svg"
+              alt="Кнопка добавления изображения"
             />
           </button>
-          <p class="popup__label">Редактировать профиль</p>
-          <input class="popup__field-name" />
-          <hr class="popup__line" />
-          <input class="popup__field-job" />
-          <hr class="popup__line" />
-          <button class="popup__button">Сохранить</button>
-        </form>
+        </section>
+        <section class="elements">
+          <div class="element">
+            <img
+              class="element__mask"
+              src="./images/karachaevsk.png"
+              alt="Карачаевск"
+            />
+            <div class="element__description">
+              <h2 class="element__text">Карачаевск</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
+            <div class="element__description">
+              <h2 class="element__text">Гора Эльбрус</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
+            <div class="element__description">
+              <h2 class="element__text">Домбай</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
+            <div class="element__description">
+              <h2 class="element__text">Домбай</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="element">
+            <img
+              class="element__mask"
+              src="./images/karachaevsk.png"
+              alt="Карачаевск"
+            />
+            <div class="element__description">
+              <h2 class="element__text">Карачаевск</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+          <div class="element">
+            <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
+            <div class="element__description">
+              <h2 class="element__text">Гора Эльбрус</h2>
+              <button type="button" class="element__like">
+                <img
+                  class="element__like-button"
+                  src="./images/like__button.svg"
+                  alt="Кнопка лайка"
+                />
+              </button>
+            </div>
+          </div>
+        </section>
+        <footer class="footer">
+          <p class="footer__text">&copy;2023 Mesto Russia</p>
+        </footer>
+        <div class="popup">
+          <div class="popup__container">
+            <button type="button" class="popup__close-button">
+              <img
+                class="popup__close-icon"
+                src="./images/close-icon.svg"
+                alt="Кнопка закрытия окна"
+              />
+            </button>
+            <form name="popup__form" class="popup__form">
+              <h2 class="popup__label">Редактировать профиль</h2>
+              <input class="popup__input popup__input_field_name" />
+              <input class="popup__input popup__input_field_job" />
+              <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
+      </main>
+      
     <script src="./index.js"></script>
   </body>
 </html>
