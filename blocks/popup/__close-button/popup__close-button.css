@@ -3,9 +3,14 @@
   background: none;
   outline: 0;
   padding: 0;
-  position: fixed;
+  position: absolute;
   top: calc(50% - (330px / 2) - 40px);
   right: calc(50% - (430px / 2) - 40px);
+}
+
+.popup__close-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 1279px) {
