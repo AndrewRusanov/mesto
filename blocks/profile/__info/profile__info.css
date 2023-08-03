@@ -10,5 +10,6 @@
   .profile__info {
     margin: 0 auto 36px;
     max-width: 282px;
+    gap: 10px 14px;
   }
 }

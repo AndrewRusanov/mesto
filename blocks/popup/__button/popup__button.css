@@ -10,7 +10,7 @@
   text-align: center;
   width: 358px;
   height: 50px;
-  margin: 18px 36px 0;
+  margin: 18px 36px 37px;
 }
 
 .popup__button:hover {
@@ -22,6 +22,8 @@
   .popup__button {
     width: 238px;
     height: 46px;
-    margin: 15px 22px 0;
+    margin: 15px 22px 25px;
+    font-size: 14px;
+    line-height: 16.94px;
   }
 }

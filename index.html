@@ -10,7 +10,6 @@
     <div class="page">
       <header class="header">
         <img class="header__logo" src="./images/header__logo.svg" alt="Логотип проекта 'Место'" />
-        <!-- <hr class="header__line" /> -->
       </header>
       <main>
         <section class="profile">
@@ -18,7 +17,7 @@
             <img class="profile__avatar" src="./images/profile__avatar.png" alt="Аватар профиля" />
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" class="profile__button profile__button_position_end">
+              <button type="button" class="profile__button profile__button_type_edit">
                 <img
                   class="profile__button-edit"
                   src="./images/profile__edit-button.svg"
@@ -28,7 +27,7 @@
               <p class="profile__description">Исследователь океана</p>
             </div>
           </div>
-          <button type="button" class="profile__button profile__button_position_center">
+          <button type="button" class="profile__button profile__button_type_add">
             <img
               class="profile__button-add"
               src="./images/profile__add-button.svg"
@@ -37,12 +36,8 @@
           </button>
         </section>
         <section class="elements">
-          <div class="element">
-            <img
-              class="element__mask"
-              src="./images/karachaevsk.png"
-              alt="Карачаевск"
-            />
+          <article class="element">
+            <img class="element__mask" src="./images/karachaevsk.png" alt="Карачаевск" />
             <div class="element__description">
               <h2 class="element__text">Карачаевск</h2>
               <button type="button" class="element__like">
@@ -53,8 +48,8 @@
                 />
               </button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
             <div class="element__description">
               <h2 class="element__text">Гора Эльбрус</h2>
@@ -66,8 +61,8 @@
                 />
               </button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
             <div class="element__description">
               <h2 class="element__text">Домбай</h2>
@@ -79,8 +74,8 @@
                 />
               </button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__mask" src="./images/Dombay.png" alt="Домбай" />
             <div class="element__description">
               <h2 class="element__text">Домбай</h2>
@@ -92,13 +87,9 @@
                 />
               </button>
             </div>
-          </div>
-          <div class="element">
-            <img
-              class="element__mask"
-              src="./images/karachaevsk.png"
-              alt="Карачаевск"
-            />
+          </article>
+          <article class="element">
+            <img class="element__mask" src="./images/karachaevsk.png" alt="Карачаевск" />
             <div class="element__description">
               <h2 class="element__text">Карачаевск</h2>
               <button type="button" class="element__like">
@@ -109,8 +100,8 @@
                 />
               </button>
             </div>
-          </div>
-          <div class="element">
+          </article>
+          <article class="element">
             <img class="element__mask" src="./images/elbrus.png" alt="Гора Эльбрус" />
             <div class="element__description">
               <h2 class="element__text">Гора Эльбрус</h2>
@@ -122,11 +113,8 @@
                 />
               </button>
             </div>
-          </div>
+          </article>
         </section>
-        <footer class="footer">
-          <p class="footer__text">&copy;2023 Mesto Russia</p>
-        </footer>
         <div class="popup">
           <div class="popup__container">
             <button type="button" class="popup__close-button">
@@ -144,8 +132,11 @@
             </form>
           </div>
         </div>
-      </div>
       </main>
+      <footer class="footer">
+        <p class="footer__text">&copy;2023 Mesto Russia</p>
+      </footer>
+    </div>
     <script src="./script/index.js"></script>
   </body>
 </html>
