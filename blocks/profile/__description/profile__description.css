@@ -13,10 +13,6 @@
   .profile__description {
     max-width: 282px;
     font-size: 14px;
-    line-height: 1.21;
     text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }
