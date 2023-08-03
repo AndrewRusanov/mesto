@@ -1,4 +1,6 @@
 .main {
   background-color: black;
   max-width: 1440px;
+  height: 100%;
+  margin: auto;
 }
