@@ -115,7 +115,7 @@
             </div>
           </article>
         </section>
-        <div class="popup">
+        <div class="popup" id="edit-popup">
           <div class="popup__container">
             <button type="button" class="popup__close-button">
               <img
@@ -124,10 +124,37 @@
                 alt="Кнопка закрытия окна"
               />
             </button>
-            <form name="popup__form" class="popup__form">
+            <form name="popup__form" class="popup__form" id="edit-form">
               <h2 class="popup__label">Редактировать профиль</h2>
               <input name="inputName" type="text" class="popup__input popup__input_field_name" />
               <input name="inputJob" type="text" class="popup__input popup__input_field_job" />
+              <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup" id="add-popup">
+          <div class="popup__container">
+            <button type="button" class="popup__close-button">
+              <img
+                class="popup__close-icon"
+                src="./images/close-icon.svg"
+                alt="Кнопка закрытия окна"
+              />
+            </button>
+            <form name="popup__form" class="popup__form" id="add-form">
+              <h2 class="popup__label">Новое место</h2>
+              <input
+                name="inputPlace"
+                type="text"
+                class="popup__input popup__input_field_palce"
+                placeholder="Название"
+              />
+              <input
+                name="inputLink"
+                type="text"
+                class="popup__input popup__input_field_link"
+                placeholder="Ссылка на картинку"
+              />
               <button type="submit" class="popup__button">Сохранить</button>
             </form>
           </div>
