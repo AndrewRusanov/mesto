@@ -84,15 +84,12 @@ function closePopupAdd() {
   closePopup(addPopupElement);
 }
 
-// function handleFormSubmit(evt) {
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-//   // Так мы можем определить свою логику отправки.
-//   // О том, как это делать, расскажем позже.
-//   nameProfile.textContent = nameInput.value;
-//   jobProfile.textContent = jobInput.value;
-//   closePopup();
-// }
-
+// Функция клонирования элеиента (template)
+function createElement(elem) {
+  const cardTemplate = document.querySelector('#element'); // Сохранили свойства template в переменную
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true); //клонировали свойства
+  const cardImage = cardTemplate.querySelector('.element__mask'); //Сохранили картинку в переменную
+}
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editFormElement.addEventListener('submit', handleFormSubmit);
