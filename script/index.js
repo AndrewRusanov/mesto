@@ -46,6 +46,7 @@ const namePlace = addFormElement.querySelector('.popup__input_field_palce'); // 
 const nameLink = addFormElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
 const addProfileButton = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
 const closePopupButtonAdd = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
 //Начальный массив (по заданию)
 const initialCards = [
   {
@@ -84,12 +85,36 @@ function closePopupAdd() {
   closePopup(addPopupElement);
 }
 
+//Инициализация страницы (прогрузка 6 фото из массива)
+initialCards.forEach(function (elements) {
+  const card = createElement(elements);
+  renderCard(card);
+});
+
+//Добавление карточки в общий массив
+function renderCard(card) {
+  sectionElements.append(card);
+}
+
 // Функция клонирования элеиента (template)
 function createElement(elem) {
-  const cardTemplate = document.querySelector('#element'); // Сохранили свойства template в переменную
+  const cardTemplate = document.querySelector('#element').content; // Сохранили свойства template в переменную
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true); //клонировали свойства
   const cardImage = cardTemplate.querySelector('.element__mask'); //Сохранили картинку в переменную
+  const buttonCardTrash = cardTemplate.querySelector('.element__delete'); //Сохранили иконку удаления карточки в переменную
+  cardImage.src = elem.link; //Определили ссылку для новой карточки
+  cardImage.alt = elem.name; //Определили альтернативное описание для карточки (аlt = name)
+  cardElement.querySelector('.element__text').textContent = elem.name; //Определили название для карточки
+  cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
+    //Выбрали кнопку с лайком
+    evt.target.classList.toggle('.element__like_active'); // переключили лайк
+  });
+  // TODO 1. Сделать открытие попапа с карточкой (биг фото)
+  // TODO 2. Повесить слушателя для удаления карточки
+
+  return cardElement;
 }
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 editFormElement.addEventListener('submit', handleFormSubmit);

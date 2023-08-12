@@ -1,6 +1,12 @@
 .element__like {
-  border: none;
+  border: 0;
   background: none;
+  background-image: url('../../../images/like__button.svg') cover;
   outline: none;
   padding: 0;
+}
+
+.element__like:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }

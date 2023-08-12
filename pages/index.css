@@ -29,9 +29,9 @@
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__mask/element__mask.css);
 @import url(../blocks/element/__like/element__like.css);
-@import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__delete/element__delete.css);
 @import url(../blocks/element/__delete-icon/element__delete-icon.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
 /* Подключение стилей .footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
