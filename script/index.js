@@ -1,27 +1,33 @@
-//Находим попап для редактирования профиля в DOM
-const editPopupElement = document.querySelector('#edit-popup');
-// Находим форму для редактирования профиля в DOM
-const editFormElement = document.querySelector('#edit-form');
+// ==========================popup редактирования профиля==============================================
+const editPopupElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
+const editFormElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
+const nameInput = editFormElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
+const jobInput = editFormElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
+const closePopupButtonEdit = document.querySelector('#close-edit'); //Кнопка закрытия popup редактирования профиля
+const nameProfile = document.querySelector('.profile__name'); //Само имя профиля в DOM
+const jobProfile = document.querySelector('.profile__description'); //Описание профиля в DOM
+const editProfileButton = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
 
-// Находим поля формы  для редактирования в DOM
-const nameInput = editFormElement.querySelector('.popup__input_field_name');
-const jobInput = editFormElement.querySelector('.popup__input_field_job');
-
-const nameProfile = document.querySelector('.profile__name');
-const jobProfile = document.querySelector('.profile__description');
-
-//Открытие popup на редактирование профиля
-const editProfileButton = document.querySelector('.profile__button_type_edit');
-function openPopupEdit() {
-  editPopupElement.classList.add('popup_opened');
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+// Функция открытия всех popup
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
-//Закрытие popup на редактирование профиля
-let closePopupButtonEdit = document.querySelector('#close-edit');
+// Функция закрытия всех popup
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+//Функция открытия popup редактирования профиля
+function openPopupEdit() {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+  openPopup(editPopupElement);
+}
+
+//Функция закрытия popup редактирования профиля
 function closePopupEdit() {
-  editPopupElement.classList.remove('popup_opened');
+  closePopup(editPopupElement);
 }
 
 function handleFormSubmit(evt) {
@@ -30,31 +36,52 @@ function handleFormSubmit(evt) {
   // О том, как это делать, расскажем позже.
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopupEdit();
+  closePopup(editPopupElement);
 }
-//=====Sprint5========================
-// Находим попап для добавления новой карточки в DOM
-const addPopupElement = document.querySelector('#add-popup');
 
-// Находим форму для добавления новой карточки в DOM
-const addFormElement = document.querySelector('#add-form');
+// ==========================popup добавления карточки==============================================
+const addPopupElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
+const addFormElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
+const namePlace = addFormElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
+const nameLink = addFormElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
+const addProfileButton = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const closePopupButtonAdd = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
+//Начальный массив (по заданию)
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-// Находим поля формы для добавления новой карточки в DOM
-const namePlace = addFormElement.querySelector('.popup__input_field_palce');
-const nameLink = addFormElement.querySelector('.popup__input_field_link');
-
-//Открытие popup на добавление карточек
-const addProfileButton = document.querySelector('.profile__button_type_add');
+//Функция открытия popup для добавления фото
 function openPopupAdd() {
-  addPopupElement.classList.add('popup_opened');
-  // nameInput.value = nameProfile.textContent;
-  // jobInput.value = jobProfile.textContent;
+  openPopup(addPopupElement);
 }
 
-//Закрытие popup на редактирование профиля
-let closePopupButtonAdd = document.querySelector('#close-add');
+//Функция закрытия popup для добавления фото
 function closePopupAdd() {
-  addPopupElement.classList.remove('popup_opened');
+  closePopup(addPopupElement);
 }
 
 // function handleFormSubmit(evt) {
