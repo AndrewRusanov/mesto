@@ -29,7 +29,7 @@ function openPopupEdit() {
 function closePopupEdit() {
   closePopup(editPopupElement);
 }
-
+//Отмена стандартной отправки формы для popup редактирования
 function handleFormSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
@@ -100,17 +100,15 @@ function renderCard(card) {
 function createElement(elem) {
   const cardTemplate = document.querySelector('#element').content; // Сохранили свойства template в переменную
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true); //клонировали свойства
-  const cardImage = cardTemplate.querySelector('.element__mask'); //Сохранили картинку в переменную
-  const buttonCardTrash = cardTemplate.querySelector('.element__delete'); //Сохранили иконку удаления карточки в переменную
+  const cardImage = cardElement.querySelector('.element__mask'); //Сохранили картинку в переменную
+  const buttonCardTrash = cardElement.querySelector('.element__delete'); //Сохранили иконку удаления карточки в переменную
   cardImage.src = elem.link; //Определили ссылку для новой карточки
   cardImage.alt = elem.name; //Определили альтернативное описание для карточки (аlt = name)
   cardElement.querySelector('.element__text').textContent = elem.name; //Определили название для карточки
   cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
     //Выбрали кнопку с лайком
-    evt.target.classList.toggle('.element__like_active'); // переключили лайк
+    evt.target.classList.toggle('element__like_active'); // переключили лайк
   });
-  // TODO 1. Сделать открытие попапа с карточкой (биг фото)
-  // TODO 2. Повесить слушателя для удаления карточки
 
   return cardElement;
 }
@@ -123,3 +121,10 @@ closePopupButtonEdit.addEventListener('click', closePopupEdit);
 
 addProfileButton.addEventListener('click', openPopupAdd);
 closePopupButtonAdd.addEventListener('click', closePopupAdd);
+
+// TODO 1. Сделать открытие попапа с карточкой (биг фото)
+// TODO 2. Повесить слушателя для удаления карточки
+// TODO 2.1. Сделать удаление карточки
+// TODO 3. Разобраться с кривым открытием карточки - DONE!
+// TODO 4. Сделать добавление новых карточек
+// TODO 5. Разобраться с кривым лайком. - DONE!
