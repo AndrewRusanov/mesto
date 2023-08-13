@@ -1,12 +1,12 @@
 // ==========================popup редактирования профиля==============================================
-const editPopupElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
-const editFormElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
-const nameInput = editFormElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
-const jobInput = editFormElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
-const closePopupButtonEdit = document.querySelector('#close-edit'); //Кнопка закрытия popup редактирования профиля
+const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
+const formEditElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
+const nameInput = formEditElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
+const jobInput = formEditElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
+const buttonPopupEditClose = document.querySelector('#close-edit'); //Кнопка закрытия popup редактирования профиля
 const nameProfile = document.querySelector('.profile__name'); //Само имя профиля в DOM
 const jobProfile = document.querySelector('.profile__description'); //Описание профиля в DOM
-const editProfileButton = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
+const buttonProfileEdit = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
 
 // Функция открытия всех popup
 function openPopup(popup) {
@@ -22,21 +22,21 @@ function closePopup(popup) {
 function openPopupEdit() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  openPopup(editPopupElement);
+  openPopup(popupEditElement);
 }
 
 //Функция закрытия popup редактирования профиля
 function closePopupEdit() {
-  closePopup(editPopupElement);
+  closePopup(popupEditElement);
 }
 //Отмена стандартной отправки формы для popup редактирования
-function handleFormSubmit(evt) {
+function handleFormEditSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopup(editPopupElement);
+  closePopup(popupEditElement);
 }
 
 // ==========================popup добавления карточки==============================================
@@ -49,6 +49,8 @@ const closePopupButtonAdd = document.querySelector('#close-add'); //Находи
 const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
 const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
 const closeImagePopupButton = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
+const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
+const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 
 //Функция открытия popup для добавления фото
 function openPopupAdd() {
@@ -106,9 +108,9 @@ function createElement(elem) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-editFormElement.addEventListener('submit', handleFormSubmit);
-editProfileButton.addEventListener('click', openPopupEdit);
-closePopupButtonEdit.addEventListener('click', closePopupEdit);
+formEditElement.addEventListener('submit', handleFormEditSubmit);
+buttonProfileEdit.addEventListener('click', openPopupEdit);
+buttonPopupEditClose.addEventListener('click', closePopupEdit);
 
 addProfileButton.addEventListener('click', openPopupAdd);
 closePopupButtonAdd.addEventListener('click', closePopupAdd);
@@ -128,8 +130,6 @@ addPopupElement.addEventListener('submit', handleFormSubmitAddPopup);
 
 // Попап открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
-  const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
-  const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
   image.src = imageLink; //Вставили ссылку на картинку;
   image.alt = imageCaption; //Вставили alt для картинки
   caption.textContent = imageCaption; //Вставили подпись к фото
