@@ -47,6 +47,8 @@ const nameLink = addFormElement.querySelector('.popup__input_field_link'); // Н
 const addProfileButton = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
 const closePopupButtonAdd = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
 const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
+const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
+const closeImagePopupButton = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
 //Начальный массив (по заданию)
 const initialCards = [
   {
@@ -96,6 +98,18 @@ function renderCard(card) {
   sectionElements.append(card);
 }
 
+//Функция создания новой карточки
+function addNewElement(element) {
+  const newElement = createElement(element);
+  sectionElements.prepend(newElement);
+}
+
+//Функция удаления карточки
+function deleteElement(event) {
+  const cardElement = event.target.closest('.element'); //Выбрали родительский элемент (карточку)
+  cardElement.remove();
+}
+
 // Функция клонирования элеиента (template)
 function createElement(elem) {
   const cardTemplate = document.querySelector('#element').content; // Сохранили свойства template в переменную
@@ -109,6 +123,10 @@ function createElement(elem) {
     //Выбрали кнопку с лайком
     evt.target.classList.toggle('element__like_active'); // переключили лайк
   });
+  cardImage.addEventListener('click', function () {
+    openImagePopup(elem.link, elem.name); // Открытие popup с карточкой (биг фото)
+  });
+  buttonCardTrash.addEventListener('click', deleteElement); //Удаление карточки
 
   return cardElement;
 }
@@ -122,9 +140,39 @@ closePopupButtonEdit.addEventListener('click', closePopupEdit);
 addProfileButton.addEventListener('click', openPopupAdd);
 closePopupButtonAdd.addEventListener('click', closePopupAdd);
 
-// TODO 1. Сделать открытие попапа с карточкой (биг фото)
-// TODO 2. Повесить слушателя для удаления карточки
-// TODO 2.1. Сделать удаление карточки
+function handleFormSubmitAddPopup(evt) {
+  //отмена стандартной отправки формы для попапа добавления карточек
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+  // Так мы можем определить свою логику отправки.
+  // О том, как это делать, расскажем позже.
+  const newElement = { name: namePlace.value, link: nameLink.value }; //передать аргументы
+  addNewElement(newElement); //вызвать функцию создания новой карточки
+  namePlace.value = '';
+  nameLink.value = '';
+  closePopup(addPopupElement); //дополнительно закрыть попап
+}
+addPopupElement.addEventListener('submit', handleFormSubmitAddPopup);
+
+// Попап открытия изображения на весь экран
+function openImagePopup(imageLink, imageCaption) {
+  const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
+  const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
+  image.src = imageLink; //Вставили ссылку на картинку;
+  image.alt = imageCaption; //Вставили alt для картинки
+  caption.textContent = imageCaption; //Вставили подпись к фото
+  openPopup(imagePopup);
+}
+
+//Функция закрытия попап с изображением
+function closeImagePopup() {
+  closePopup(imagePopup);
+}
+
+closeImagePopupButton.addEventListener('click', closeImagePopup);
+// TODO 1. Сделать открытие попапа с карточкой (биг фото) - DONE!
+// TODO 2. Повесить слушателя для удаления карточки - DONE!
+// TODO 2.1. Сделать удаление карточки - DONE!
 // TODO 3. Разобраться с кривым открытием карточки - DONE!
-// TODO 4. Сделать добавление новых карточек
+// TODO 4. Сделать добавление новых карточек - DONE!
 // TODO 5. Разобраться с кривым лайком. - DONE!
+// TODO 6. Плавное открытие и закрытие попапов - in progress...
