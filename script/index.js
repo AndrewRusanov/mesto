@@ -49,33 +49,6 @@ const closePopupButtonAdd = document.querySelector('#close-add'); //Находи
 const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
 const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
 const closeImagePopupButton = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
-//Начальный массив (по заданию)
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 //Функция открытия popup для добавления фото
 function openPopupAdd() {
@@ -169,10 +142,3 @@ function closeImagePopup() {
 }
 
 closeImagePopupButton.addEventListener('click', closeImagePopup);
-// TODO 1. Сделать открытие попапа с карточкой (биг фото) - DONE!
-// TODO 2. Повесить слушателя для удаления карточки - DONE!
-// TODO 2.1. Сделать удаление карточки - DONE!
-// TODO 3. Разобраться с кривым открытием карточки - DONE!
-// TODO 4. Сделать добавление новых карточек - DONE!
-// TODO 5. Разобраться с кривым лайком. - DONE!
-// TODO 6. Плавное открытие и закрытие попапов - in progress...
