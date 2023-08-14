@@ -40,26 +40,26 @@ function handleFormEditSubmit(evt) {
 }
 
 // ==========================popup добавления карточки==============================================
-const addPopupElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
-const addFormElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
-const namePlace = addFormElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
-const nameLink = addFormElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
-const addProfileButton = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const closePopupButtonAdd = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const popupAddElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
+const formAddElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
+const namePlace = formAddElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
+const nameLink = formAddElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
+const buttonAddProfile = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const buttonPopupAddClose = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
 const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
 const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
-const closeImagePopupButton = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
+const buttonPopupImageClose = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
 const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
 const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 
 //Функция открытия popup для добавления фото
 function openPopupAdd() {
-  openPopup(addPopupElement);
+  openPopup(popupAddElement);
 }
 
 //Функция закрытия popup для добавления фото
 function closePopupAdd() {
-  closePopup(addPopupElement);
+  closePopup(popupAddElement);
 }
 
 //Инициализация страницы (прогрузка 6 фото из массива)
@@ -112,8 +112,8 @@ formEditElement.addEventListener('submit', handleFormEditSubmit);
 buttonProfileEdit.addEventListener('click', openPopupEdit);
 buttonPopupEditClose.addEventListener('click', closePopupEdit);
 
-addProfileButton.addEventListener('click', openPopupAdd);
-closePopupButtonAdd.addEventListener('click', closePopupAdd);
+buttonAddProfile.addEventListener('click', openPopupAdd);
+buttonPopupAddClose.addEventListener('click', closePopupAdd);
 
 function handleFormSubmitAddPopup(evt) {
   //отмена стандартной отправки формы для попапа добавления карточек
@@ -124,9 +124,9 @@ function handleFormSubmitAddPopup(evt) {
   addNewElement(newElement); //вызвать функцию создания новой карточки
   namePlace.value = '';
   nameLink.value = '';
-  closePopup(addPopupElement); //дополнительно закрыть попап
+  closePopup(popupAddElement); //дополнительно закрыть попап
 }
-addPopupElement.addEventListener('submit', handleFormSubmitAddPopup);
+popupAddElement.addEventListener('submit', handleFormSubmitAddPopup);
 
 // Попап открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
@@ -141,4 +141,4 @@ function closeImagePopup() {
   closePopup(imagePopup);
 }
 
-closeImagePopupButton.addEventListener('click', closeImagePopup);
+buttonPopupImageClose.addEventListener('click', closeImagePopup);
