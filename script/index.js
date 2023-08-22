@@ -7,16 +7,43 @@ const buttonPopupEditClose = document.querySelector('#close-edit'); //Кнопк
 const nameProfile = document.querySelector('.profile__name'); //Само имя профиля в DOM
 const jobProfile = document.querySelector('.profile__description'); //Описание профиля в DOM
 const buttonProfileEdit = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
+const buttonAllPopupClose = document.querySelectorAll('.popup__close-button'); //Псевдомассив всех кнопок закрытия popup
+
+// ======================== sprint 6 ===================================
+//Функция закрытия всех попапов через overlay
+function closePopupOverlay(event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.target);
+  }
+}
+
+//Функция закрытия всех попапов черех Esc
+function closePopupEsc(event) {
+  if (event.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
+}
+// ======================================================================
 
 // Функция открытия всех popup
 function openPopup(popup) {
+  document.addEventListener('keydown', closePopupEsc);
   popup.classList.add('popup_opened');
 }
 
 // Функция закрытия всех popup
 function closePopup(popup) {
+  document.removeEventListener('keydown', closePopupEsc);
   popup.classList.remove('popup_opened');
 }
+
+//
+buttonAllPopupClose.forEach(button => {
+  const popup = button.closest('.popup'); //Находим ближайший попап к
+  popup.addEventListener('mousedown', closePopupOverlay);
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 //Функция открытия popup редактирования профиля
 function openPopupEdit() {
