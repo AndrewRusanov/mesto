@@ -4,3 +4,8 @@
   cursor: default;
   background: white;
 }
+
+.popup__button_disabled:hover {
+  cursor: default;
+  opacity: 1;
+}
