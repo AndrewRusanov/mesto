@@ -1,12 +1,14 @@
 //Функция делает видимым сообщение с ошибкой
 function showInputError(errorElement, inputElement, configValidation) {
   inputElement.classList.add(configValidation.inputErrorClass);
+  errorElement.classList.add(configValidation.errorClass);
   errorElement.textContent = inputElement.validationMessage; //Стандартный текст ошибки HTML-валидации
 }
 
 //Функция убирает сообщение с ошибкой
 function hideInputError(errorElement, inputElement, configValidation) {
   inputElement.classList.remove(configValidation.inputErrorClass);
+  errorElement.classList.remove(configValidation.errorClass);
   errorElement.textContent = ''; //Очистили строку с ошибкой
 }
 
@@ -22,20 +24,20 @@ function checkInputValidity(formElement, inputElement, configValidation) {
 
 //Функция проверки валидации для каждого инпута. Возвращает true, если хотя бы один из input invalid
 function hasInvalidInput(inputList) {
-  return inputList.some(function (inputElement) {
+  return inputList.some(inputElement => {
     return !inputElement.validity.valid;
   });
 }
 
 //Функция переключения состояния кнопки
 function toggleButtonState(inputList, buttonElement, configValidation) {
-  if (!hasInvalidInput(inputList)) {
+  if (hasInvalidInput(inputList)) {
     //Если форма не валидна
     buttonElement.classList.add(configValidation.inactiveButtonClass); //Добавили класс disabled для кнопки
-    buttonElement.setAttribute('disabled', true); //Сделали кнопку неактивной
+    buttonElement.disabled = 'disabled'; //Сделали кнопку неактивной
   } else {
     buttonElement.classList.remove(configValidation.inactiveButtonClass); //Убрали класс disabled для кнопки
-    buttonElement.removeAttribute('disabled'); //Сделали кнопку активной
+    buttonElement.disabled = false; //Сделали кнопку активной
   }
 }
 
@@ -67,9 +69,9 @@ const configValidation = {
   formSelector: '.popup__form', //форма для валидации
   inputSelector: '.popup__input', //поле для ввода
   submitButtonSelector: '.popup__button', //кнопка "Сохранить"
-  inactiveButtonClass: '.popup__button_disabled', //Состоянеи disabled для кнопки "Сохранить"
-  inputErrorClass: '.popup__input_type_error', //Красная строка под полем ввода
-  errorClass: '.popup__error_visible' //Видимость ошибки
+  inactiveButtonClass: 'popup__button_disabled', //Состоянеи disabled для кнопки "Сохранить"
+  inputErrorClass: 'popup__input_type_error', //Красная строка под полем ввода
+  errorClass: 'popup__error_visible' //Видимость ошибки
 };
 
 //Вызов функции включения валидации
