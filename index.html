@@ -45,10 +45,27 @@
                 alt="Кнопка закрытия окна"
               />
             </button>
-            <form name="popup__form" class="popup__form" id="edit-form">
+            <form name="popup__form" class="popup__form" id="edit-form" novalidate>
               <h2 class="popup__label">Редактировать профиль</h2>
-              <input name="inputName" type="text" class="popup__input popup__input_field_name" />
-              <input name="inputJob" type="text" class="popup__input popup__input_field_job" />
+              <input
+                name="inputName"
+                type="text"
+                class="popup__input popup__input_field_name"
+                placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+              />
+              <span class="popup__error" id="title-error">Вы пропустили это поле.</span>
+              <!--Тут надо убрать textContent и сделать его автоматическим-->
+              <input
+                name="inputJob"
+                type="text"
+                class="popup__input popup__input_field_job"
+                placeholder="О себе"
+                minlength="2"
+                maxlength="200"
+              />
+              <span class="popup__error" id="subtitle-error"></span>
               <button type="submit" class="popup__button">Сохранить</button>
             </form>
           </div>
@@ -70,12 +87,16 @@
                 class="popup__input popup__input_field_palce"
                 placeholder="Название"
               />
+              <span class="popup__error" id="place-error">Вы пропустили это поле.</span>
+              <!--Тут надо убрать textContent и сделать его автоматическим-->
               <input
                 name="inputLink"
                 type="text"
                 class="popup__input popup__input_field_link"
                 placeholder="Ссылка на картинку"
               />
+              <span class="popup__error" id="url-error">Вы пропустили это поле.</span>
+              <!--Тут надо убрать textContent и сделать его автоматическим-->
               <button type="submit" class="popup__button">Сохранить</button>
             </form>
           </div>
