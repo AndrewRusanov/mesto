@@ -7,7 +7,7 @@ const buttonPopupEditClose = document.querySelector('#close-edit'); //Кнопк
 const nameProfile = document.querySelector('.profile__name'); //Само имя профиля в DOM
 const jobProfile = document.querySelector('.profile__description'); //Описание профиля в DOM
 const buttonProfileEdit = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
-const buttonAllPopupClose = document.querySelectorAll('.popup__close-button'); //Псевдомассив всех кнопок закрытия popup
+const buttonAllPopupCloseList = document.querySelectorAll('.popup__close-button'); //Псевдомассив всех кнопок закрытия popup
 
 // ======================== sprint 6 ===================================
 //Функция закрытия всех попапов через overlay
@@ -39,7 +39,7 @@ function closePopup(popup) {
 }
 
 //
-buttonAllPopupClose.forEach(button => {
+buttonAllPopupCloseList.forEach(button => {
   const popup = button.closest('.popup'); //Находим ближайший попап к
   popup.addEventListener('mousedown', closePopupOverlay);
   button.addEventListener('click', () => closePopup(popup));
