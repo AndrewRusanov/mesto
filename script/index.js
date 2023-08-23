@@ -9,6 +9,19 @@ const jobProfile = document.querySelector('.profile__description'); //Описа
 const buttonProfileEdit = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
 const buttonAllPopupCloseList = document.querySelectorAll('.popup__close-button'); //Псевдомассив всех кнопок закрытия popup
 
+// ==========================popup добавления карточки==============================================
+const popupAddElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
+const formAddElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
+const namePlace = formAddElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
+const nameLink = formAddElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
+const buttonAddProfile = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const buttonPopupAddClose = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
+const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
+const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
+const buttonPopupImageClose = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
+const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
+const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
+
 // ======================== sprint 6 ===================================
 //Функция закрытия всех попапов через overlay
 function closePopupOverlay(event) {
@@ -65,19 +78,6 @@ function handleFormEditSubmit(evt) {
   jobProfile.textContent = jobInput.value;
   closePopup(popupEditElement);
 }
-
-// ==========================popup добавления карточки==============================================
-const popupAddElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
-const formAddElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
-const namePlace = formAddElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
-const nameLink = formAddElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
-const buttonAddProfile = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const buttonPopupAddClose = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
-const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
-const buttonPopupImageClose = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
-const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
-const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 
 //Функция открытия popup для добавления фото
 function openPopupAdd() {
