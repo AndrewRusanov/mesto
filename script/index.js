@@ -90,8 +90,8 @@ function closePopupAdd() {
 }
 
 //Инициализация страницы (прогрузка 6 фото из массива)
-initialCards.forEach(function (elements) {
-  const card = createElement(elements);
+initialCards.forEach(function (element) {
+  const card = createElement(element);
   renderCard(card);
 });
 
