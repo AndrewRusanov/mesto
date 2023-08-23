@@ -22,6 +22,8 @@ const buttonPopupImageClose = document.querySelector('#close-img'); //Наход
 const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
 const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 
+const cardTemplate = document.querySelector('#element').content; // Сохранили свойства template в переменную
+
 // ======================== sprint 6 ===================================
 //Функция закрытия всех попапов через overlay
 function closePopupOverlay(event) {
@@ -114,7 +116,6 @@ function deleteElement(event) {
 
 // Функция клонирования элеиента (template)
 function createElement(elem) {
-  const cardTemplate = document.querySelector('#element').content; // Сохранили свойства template в переменную
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true); //клонировали свойства
   const cardImage = cardElement.querySelector('.element__mask'); //Сохранили картинку в переменную
   const buttonCardTrash = cardElement.querySelector('.element__delete'); //Сохранили иконку удаления карточки в переменную
