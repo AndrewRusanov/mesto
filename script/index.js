@@ -152,6 +152,8 @@ function handleFormSubmitAddPopup(evt) {
   addNewElement(newElement); //вызвать функцию создания новой карточки
   namePlace.value = '';
   nameLink.value = '';
+  evt.submitter.classList.add('popup__button_disabled'); //Добавли кнопке класс disabled
+  evt.submitter.disabled = 'disabled';
   closePopup(popupAddElement); //дополнительно закрыть попап
 }
 popupAddElement.addEventListener('submit', handleFormSubmitAddPopup);
