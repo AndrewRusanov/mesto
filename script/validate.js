@@ -33,12 +33,17 @@ function hasInvalidInput(inputList) {
 function toggleButtonState(inputList, buttonElement, configValidation) {
   if (hasInvalidInput(inputList)) {
     //Если форма не валидна
-    buttonElement.classList.add(configValidation.inactiveButtonClass); //Добавили класс disabled для кнопки
-    buttonElement.disabled = 'disabled'; //Сделали кнопку неактивной
+    disableSubmitButton(buttonElement); //вызываю функцию деактивации кнопки "Сохранить"
   } else {
     buttonElement.classList.remove(configValidation.inactiveButtonClass); //Убрали класс disabled для кнопки
     buttonElement.disabled = false; //Сделали кнопку активной
   }
+}
+
+//Функция деактивации кнопки "Сохранить"
+function disableSubmitButton(buttonElement) {
+  buttonElement.classList.add('popup__button_disabled'); //Добавили класс disabled для кнопки
+  buttonElement.disabled = 'disabled'; //Сделали кнопку неактивной
 }
 
 //Функция слушателя для каждой формы
