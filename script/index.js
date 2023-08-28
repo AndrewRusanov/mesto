@@ -152,7 +152,7 @@ function handleFormSubmitAddPopup(evt) {
   addNewElement(newElement); //вызвать функцию создания новой карточки
   namePlace.value = '';
   nameLink.value = '';
-  disableSubmitButton(evt.submitter); //вызываю функцию деактивации кнопки "Сохранить"
+  disableSubmitButton(evt.submitter, configValidation); //вызываю функцию деактивации кнопки "Сохранить"
   closePopup(popupAddElement); //дополнительно закрыть попап
 }
 popupAddElement.addEventListener('submit', handleFormSubmitAddPopup);
