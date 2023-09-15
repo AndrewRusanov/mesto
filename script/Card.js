@@ -35,15 +35,16 @@ export default class Card {
       this._handleLikeToggle(event);
     });
     // Обработчик события клика по самой карточки
-    this._element.querySelector('.element__mask').addEventListener('click', () => {
+    this._mask.addEventListener('click', () => {
       this._openImagePopup(this._link, this._name);
     });
   }
 
   createCard() {
     this._element = this._getTemplate(); //Получили темплейт-элемент
-    this._element.querySelector('.element__mask').src = this._link;
-    this._element.querySelector('.element__mask').alt = this._name;
+    this._mask = this._element.querySelector('.element__mask');
+    this._mask.src = this._link;
+    this._mask.alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
     this._setEventListeners(); //Установили сразу все слушатели на карточку
 

@@ -1,16 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-//Объект для передачи настроек валидации
-const configValidation = {
-  formSelector: '.popup__form', //форма для валидации
-  inputSelector: '.popup__input', //поле для ввода
-  submitButtonSelector: '.popup__button', //кнопка "Сохранить"
-  inactiveButtonClass: 'popup__button_disabled', //Состоянеи disabled для кнопки "Сохранить"
-  inputErrorClass: 'popup__input_type_error', //Красная строка под полем ввода
-  errorClass: 'popup__error_visible' //Видимость ошибки
-};
-
 //Начальный массив (по заданию)
 const initialCards = [
   {
@@ -181,11 +171,9 @@ formList.forEach(formElement => {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formEditElement.addEventListener('submit', handleFormEditSubmit);
 buttonProfileEdit.addEventListener('click', openPopupEdit);
 buttonPopupEditClose.addEventListener('click', closePopupEdit);
 buttonAddProfile.addEventListener('click', openPopupAdd);
 buttonPopupAddClose.addEventListener('click', closePopupAdd);
-popupAddElement.addEventListener('submit', handleFormSubmitAddPopup);
 
 buttonPopupImageClose.addEventListener('click', closeImagePopup);

@@ -43,7 +43,7 @@ export default class FormValidator {
   //Функция деактивации кнопки "Сохранить"
   _disableSubmitButton() {
     this._submitButton.classList.add(this._config.inactiveButtonClass);
-    this._submitButton.disabled = 'disabled';
+    this._submitButton.disabled = true;
   }
 
   //Функция переключения состояния кнопки
