@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(data, templateSelector, openImagePopup) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({ name, link }, templateSelector, openImagePopup, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._templateSelector = templateSelector;
     this._openImagePopup = openImagePopup;
+    this._openPopup = handleCardClick;
   }
 
   _getTemplate() {
@@ -13,6 +14,10 @@ export default class Card {
       .cloneNode(true);
 
     return cardElement;
+  }
+
+  _handleOpenPopup() {
+    this._openPopup({ name: this._name, link: this._link });
   }
 
   // Удаление карточки
