@@ -3,7 +3,7 @@ export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     // Отдельно сохраняем кнопку закрытия, чтобы навесить на нее слушателя закрытия попапа
-    this._popupCloseButton = this._popup.querySelector('popup__close-button');
+    this._popupCloseButton = this._popup.querySelector('.popup__close-button');
   }
 
   //   приватный метод, который содержит логику закрытия попапа клавишей Esc
