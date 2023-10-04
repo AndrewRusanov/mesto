@@ -2,6 +2,7 @@ import Card from '../script/Card.js';
 import FormValidator from '../script/FormValidator.js';
 import Section from '../script/Section.js';
 import { configValidation, initialCards } from '../utils/constants.js';
+import Popup from '../script/Popup.js';
 
 // Объявление всех переменных (sprint 4-6)
 const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
@@ -19,7 +20,6 @@ const namePlace = formAddElement.querySelector('.popup__input_field_palce'); // 
 const nameLink = formAddElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
 const buttonAddProfile = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
 const buttonPopupAddClose = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const sectionElements = document.querySelector('.elements'); //Сюда будут добавляться карточки
 const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
 const buttonPopupImageClose = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
 const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
@@ -40,6 +40,8 @@ const cardsList = new Section(
   '#elements'
 );
 
+// Создадим экземпляр класса Popup
+
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   image.src = imageLink; //Вставили ссылку на картинку;
@@ -50,6 +52,14 @@ function openImagePopup(imageLink, imageCaption) {
 
 // вызовем метод renderItem, чтобы инициализировать начальный контент страницы
 cardsList.renderItems();
+
+// Слушатели событий
+buttonProfileEdit.addEventListener('click', openPopupEdit);
+buttonPopupEditClose.addEventListener('click', closePopupEdit);
+buttonAddProfile.addEventListener('click', openPopupAdd);
+buttonPopupAddClose.addEventListener('click', closePopupAdd);
+buttonPopupImageClose.addEventListener('click', closeImagePopup);
+
 // ====================== sprint 7 (рефакторинг) ========================
 
 // функция добавления пользователем каротчки
@@ -150,9 +160,3 @@ formList.forEach(formElement => {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-buttonProfileEdit.addEventListener('click', openPopupEdit);
-buttonPopupEditClose.addEventListener('click', closePopupEdit);
-buttonAddProfile.addEventListener('click', openPopupAdd);
-buttonPopupAddClose.addEventListener('click', closePopupAdd);
-
-buttonPopupImageClose.addEventListener('click', closeImagePopup);
