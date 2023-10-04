@@ -3,24 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="./src/pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="main">
     <div class="page">
       <header class="header">
-        <img class="header__logo" src="./images/header__logo.svg" alt="Логотип проекта 'Место'" />
+        <img
+          class="header__logo"
+          src="./src/images/header__logo.svg"
+          alt="Логотип проекта 'Место'"
+        />
       </header>
       <main>
         <section class="profile">
           <div class="profile__flex">
-            <img class="profile__avatar" src="./images/profile__avatar.png" alt="Аватар профиля" />
+            <img
+              class="profile__avatar"
+              src="./src/images/profile__avatar.png"
+              alt="Аватар профиля"
+            />
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__button profile__button_type_edit">
                 <img
                   class="profile__button-edit"
-                  src="./images/profile__edit-button.svg"
+                  src="./src/images/profile__edit-button.svg"
                   alt="Кнопка редактирования"
                 />
               </button>
@@ -30,7 +38,7 @@
           <button type="button" class="profile__button profile__button_type_add">
             <img
               class="profile__button-add"
-              src="./images/profile__add-button.svg"
+              src="./src/images/profile__add-button.svg"
               alt="Кнопка добавления изображения"
             />
           </button>
@@ -41,7 +49,7 @@
             <button type="button" class="popup__close-button" id="close-edit">
               <img
                 class="popup__close-icon"
-                src="./images/close-icon.svg"
+                src="./src/images/close-icon.svg"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -76,7 +84,7 @@
             <button type="reset" class="popup__close-button" id="close-add">
               <img
                 class="popup__close-icon"
-                src="./images/close-icon.svg"
+                src="./src/images/close-icon.svg"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -109,7 +117,7 @@
             <button type="button" class="popup__close-button" id="close-img">
               <img
                 class="popup__close-icon"
-                src="./images/close-icon.svg"
+                src="./src/images/close-icon.svg"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -127,7 +135,7 @@
     <template id="element">
       <article class="element">
         <button class="element__delete">
-          <img src="./images/Trash.svg" class="element__delete-icon" />
+          <img src="./src/images/Trash.svg" class="element__delete-icon" />
         </button>
         <img class="element__mask" />
         <div class="element__description">
@@ -137,6 +145,6 @@
       </article>
     </template>
     <script src="./script/constants.js"></script>
-    <script type="module" src="./pages/index.js"></script>
+    <script type="module" src="./src/pages/index.js"></script>
   </body>
 </html>

@@ -10,7 +10,7 @@ import {
   formList,
   buttonAddCard,
   buttonEditProfile
-} from '../../utils/constants.js';
+} from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
