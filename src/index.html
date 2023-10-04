@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="main">
@@ -11,8 +10,9 @@
       <header class="header">
         <img
           class="header__logo"
-          src="./src/images/header__logo.svg"
-          alt="Логотип проекта 'Место'"
+          src="<%=require('./images/header__logo.svg')%>"
+          alt="Логотип
+        проекта 'Место'"
         />
       </header>
       <main>
@@ -20,7 +20,7 @@
           <div class="profile__flex">
             <img
               class="profile__avatar"
-              src="./src/images/profile__avatar.png"
+              src="<%=require('./images/profile__avatar.png')%>"
               alt="Аватар профиля"
             />
             <div class="profile__info">
@@ -28,7 +28,7 @@
               <button type="button" class="profile__button profile__button_type_edit">
                 <img
                   class="profile__button-edit"
-                  src="./src/images/profile__edit-button.svg"
+                  src="<%=require('./images/profile__edit-button.svg')%>"
                   alt="Кнопка редактирования"
                 />
               </button>
@@ -38,7 +38,7 @@
           <button type="button" class="profile__button profile__button_type_add">
             <img
               class="profile__button-add"
-              src="./src/images/profile__add-button.svg"
+              src="<%=require('./images/profile__add-button.svg')%>"
               alt="Кнопка добавления изображения"
             />
           </button>
@@ -49,7 +49,7 @@
             <button type="button" class="popup__close-button" id="close-edit">
               <img
                 class="popup__close-icon"
-                src="./src/images/close-icon.svg"
+                src="<%=require('./images/close-icon.svg')%>"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -84,7 +84,7 @@
             <button type="reset" class="popup__close-button" id="close-add">
               <img
                 class="popup__close-icon"
-                src="./src/images/close-icon.svg"
+                src="<%=require('./images/close-icon.svg')%>"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -117,7 +117,7 @@
             <button type="button" class="popup__close-button" id="close-img">
               <img
                 class="popup__close-icon"
-                src="./src/images/close-icon.svg"
+                src="<%=require('./images/close-icon.svg')%>"
                 alt="Кнопка закрытия окна"
               />
             </button>
@@ -135,7 +135,7 @@
     <template id="element">
       <article class="element">
         <button class="element__delete">
-          <img src="./src/images/Trash.svg" class="element__delete-icon" />
+          <img src="<%=require('./images/Trash.svg')%>" class="element__delete-icon" />
         </button>
         <img class="element__mask" />
         <div class="element__description">
@@ -144,7 +144,5 @@
         </div>
       </article>
     </template>
-    <script src="./script/constants.js"></script>
-    <script type="module" src="./src/pages/index.js"></script>
   </body>
 </html>
