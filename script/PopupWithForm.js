@@ -31,7 +31,9 @@ class PopupWithForm extends Popup {
   //   метод, который не только закрывает попап, но и сбрасывает значения полей формы
   close() {
     super.close();
-    this._popupForm.reset();
+    this._inputList.forEach(item => {
+      item.value = '';
+    });
   }
 }
 

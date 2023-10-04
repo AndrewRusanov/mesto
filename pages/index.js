@@ -88,6 +88,7 @@ function handleSubmitProfilePopup(event) {
 // Слушатели событий
 popupIamge.setEventListeners();
 popupAdd.setEventListeners();
+popupProfile.setEventListeners();
 
 buttonAddCard.addEventListener('click', openAddPopup);
 buttonEditProfile.addEventListener('click', openEditPopup);
@@ -96,6 +97,7 @@ buttonEditProfile.addEventListener('click', openEditPopup);
 // вызовем метод renderItem, чтобы инициализировать начальный контент страницы
 cardsList.renderItems();
 
+// подключим валидацию для каждой формы
 formList.forEach(formItem => {
   const formValidator = new FormValidator(configValidation, formItem);
   formValidator.enableValidation();
