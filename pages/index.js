@@ -1,33 +1,7 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-
-//Начальный массив (по заданию)
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import Card from '../script/Card.js';
+import FormValidator from '../script/FormValidator.js';
+import Section from '../script/Section.js';
+import { configValidation, initialCards } from '../utils/constants.js';
 
 // Объявление всех переменных (sprint 4-6)
 const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
@@ -51,7 +25,21 @@ const buttonPopupImageClose = document.querySelector('#close-img'); //Наход
 const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
 const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 const formList = document.querySelectorAll('.popup__form');
-// ====================== sprint 7 (рефакторинг) ========================
+
+// ============================ sprint 8 ================================
+// создадим экземпляр класса Section
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: item => {
+      const newCard = new Card(item, '#element', openImagePopup);
+      const cardElement = newCard.createCard();
+      return cardElement;
+    }
+  },
+  '#elements'
+);
+
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   image.src = imageLink; //Вставили ссылку на картинку;
@@ -60,17 +48,9 @@ function openImagePopup(imageLink, imageCaption) {
   openPopup(imagePopup);
 }
 
-// функиця создания новых карточек
-function createNewCard(data) {
-  const newCard = new Card(data, '#element', openImagePopup);
-  return newCard.createCard();
-}
-
-//Инициализация страницы (прогрузка 6 фото из массива)
-initialCards.forEach(item => {
-  const cardElement = createNewCard(item);
-  sectionElements.append(cardElement);
-});
+// вызовем метод renderItem, чтобы инициализировать начальный контент страницы
+cardsList.renderItems();
+// ====================== sprint 7 (рефакторинг) ========================
 
 // функция добавления пользователем каротчки
 function addNewElement(cardData) {
@@ -160,7 +140,6 @@ function handleFormSubmitAddPopup(evt) {
 formList.forEach(formElement => {
   const formValidator = new FormValidator(configValidation, formElement);
   formValidator.enableValidation();
-  console.log(formElement.id);
 
   if (formElement.id === 'edit-form') {
     formElement.addEventListener('submit', handleFormEditSubmit);

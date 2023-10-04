@@ -8,12 +8,14 @@ class Section {
   //   публичный метод, который принимает DOM-элемент и добавляет его в контейнер
   addItem(item) {
     const newElement = this._renderer(item);
-    this._container.prepend(newElement);
+    this._container.append(newElement);
   }
 
-  renderItem() {
+  renderItems() {
     this._initialArray.forEach(item => {
       this.addItem(item);
     });
   }
 }
+
+export default Section;
