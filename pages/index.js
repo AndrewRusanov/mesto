@@ -3,6 +3,7 @@ import FormValidator from '../script/FormValidator.js';
 import Section from '../script/Section.js';
 import { configValidation, initialCards } from '../utils/constants.js';
 import PopupWithImage from '../script/PopupWithImage.js';
+import PopupWithForm from '../script/PopupWithForm.js';
 
 // Объявление всех переменных (sprint 4-6)
 const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
@@ -26,7 +27,11 @@ const image = imagePopup.querySelector('.popup__image'); //Выбрали кар
 const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 const formList = document.querySelectorAll('.popup__form');
 
+const buttonAddCard = document.querySelector('.profile__button_type_add');
+const buttonEditProfile = document.querySelector('.profile__button_type_edit');
+
 // ============================ sprint 8 ================================
+// ==================== создание экземпляров класса ====================
 // создадим экземпляр класса Section
 const cardsList = new Section(
   {
@@ -43,126 +48,55 @@ const cardsList = new Section(
 // Создадим экземпляр класса PopupWithImage
 const popupIamge = new PopupWithImage('#img-popup');
 
+// Создадим экземпляры класса PopuoWithForm
+const popupAdd = new PopupWithForm('#add-popup', handleSubmitAddPopup);
+const popupProfile = new PopupWithForm('#edit-popup', handleSubmitProfilePopup);
+
+// ============================ функции ================================
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   popupIamge.open(imageCaption, imageLink);
 }
 
-// функция закрыьтя изображения на весь экран
+//Функция открытяи попапа добавления новой карточки
+function openAddPopup() {
+  popupAdd.open();
+}
+
+function openEditPopup() {
+  popupProfile.open();
+}
+
+// функция закрытия изображения на весь экран
 function closeImagePopup(event) {
   event.stopPropaganation();
   popupIamge.close();
 }
 
-// вызовем метод renderItem, чтобы инициализировать начальный контент страницы
-cardsList.renderItems();
+// Функция обработчика события для попапа добавления фотографии
+function handleSubmitAddPopup(event) {
+  event.preventDefault();
+}
+
+// Функция обработчика события для попапа редактирования профиля
+function handleSubmitProfilePopup(event) {
+  event.preventDefault();
+}
+
+// ======================== обработчики событий ========================
 
 // Слушатели событий
 popupIamge.setEventListeners();
+popupAdd.setEventListeners();
 
-buttonProfileEdit.addEventListener('click', openPopupEdit);
-buttonPopupEditClose.addEventListener('click', closePopupEdit);
-buttonAddProfile.addEventListener('click', openPopupAdd);
-buttonPopupAddClose.addEventListener('click', closePopupAdd);
-buttonPopupImageClose.addEventListener('click', closeImagePopup);
+buttonAddCard.addEventListener('click', openAddPopup);
+buttonEditProfile.addEventListener('click', openEditPopup);
 
-// ====================== sprint 7 (рефакторинг) ========================
+// ======================== инициализация страницы ========================
+// вызовем метод renderItem, чтобы инициализировать начальный контент страницы
+cardsList.renderItems();
 
-// // функция добавления пользователем каротчки
-// function addNewElement(cardData) {
-//   const newElement = createNewCard(cardData);
-//   sectionElements.prepend(newElement);
-// }
-
-// // функция открытия всех popup
-// function openPopup(popup) {
-//   document.addEventListener('keydown', closePopupEsc);
-//   popup.classList.add('popup_opened');
-// }
-
-// // Функция закрытия всех popup
-// function closePopup(popup) {
-//   document.removeEventListener('keydown', closePopupEsc);
-//   popup.classList.remove('popup_opened');
-// }
-
-// buttonAllPopupCloseList.forEach(button => {
-//   const popup = button.closest('.popup'); //Находим ближайший попап к
-//   popup.addEventListener('mousedown', closePopupOverlay);
-//   button.addEventListener('click', () => closePopup(popup));
-// });
-
-// //Функция закрытия всех попапов через overlay
-// function closePopupOverlay(event) {
-//   if (event.target === event.currentTarget) {
-//     closePopup(event.target);
-//   }
-// }
-
-// //Функция закрытия всех попапов черех Esc
-// function closePopupEsc(event) {
-//   if (event.key === 'Escape') {
-//     const popupOpened = document.querySelector('.popup_opened');
-//     closePopup(popupOpened);
-//   }
-// }
-
-// //Функция открытия popup редактирования профиля
-// function openPopupEdit() {
-//   nameInput.value = nameProfile.textContent;
-//   jobInput.value = jobProfile.textContent;
-//   openPopup(popupEditElement);
-// }
-
-// //Функция закрытия popup редактирования профиля
-// function closePopupEdit() {
-//   closePopup(popupEditElement);
-// }
-
-// //Функция открытия popup для добавления фото
-// function openPopupAdd() {
-//   openPopup(popupAddElement);
-// }
-
-// //Функция закрытия popup для добавления фото
-// function closePopupAdd() {
-//   closePopup(popupAddElement);
-// }
-
-// // //Функция закрытия попап с изображением
-// // function closeImagePopup() {
-// //   closePopup(imagePopup);
-// // }
-
-// //Отмена стандартной отправки формы для popup редактирования
-// function handleFormEditSubmit(evt) {
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-//   // Так мы можем определить свою логику отправки.
-//   // О том, как это делать, расскажем позже.
-//   nameProfile.textContent = nameInput.value;
-//   jobProfile.textContent = jobInput.value;
-//   closePopup(popupEditElement);
-// }
-
-// function handleFormSubmitAddPopup(evt) {
-//   //отмена стандартной отправки формы для попапа добавления карточек
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-//   // Так мы можем определить свою логику отправки.
-//   // О том, как это делать, расскажем позже.
-//   addNewElement({ name: namePlace.value, link: nameLink.value }); //вызвать функцию создания новой карточки
-//   closePopup(popupAddElement); //дополнительно закрыть попап
-// }
-
-// formList.forEach(formElement => {
-//   const formValidator = new FormValidator(configValidation, formElement);
-//   formValidator.enableValidation();
-
-//   if (formElement.id === 'edit-form') {
-//     formElement.addEventListener('submit', handleFormEditSubmit);
-//   } else if (formElement.id === 'add-form') {
-//     formElement.addEventListener('submit', handleFormSubmitAddPopup);
-//   }
-// });
-
-// // Прикрепляем обработчик к форме:
-// // он будет следить за событием “submit” - «отправка»
+formList.forEach(formItem => {
+  const formValidator = new FormValidator(configValidation, formItem);
+  formValidator.enableValidation();
+});
