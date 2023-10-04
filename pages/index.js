@@ -4,6 +4,7 @@ import Section from '../script/Section.js';
 import { configValidation, initialCards } from '../utils/constants.js';
 import PopupWithImage from '../script/PopupWithImage.js';
 import PopupWithForm from '../script/PopupWithForm.js';
+import UserInfo from '../script/UserInfo.js';
 
 // Объявление всех переменных (sprint 4-6)
 const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
@@ -49,8 +50,25 @@ const cardsList = new Section(
 const popupIamge = new PopupWithImage('#img-popup');
 
 // Создадим экземпляры класса PopuoWithForm
-const popupAdd = new PopupWithForm('#add-popup', handleSubmitAddPopup);
-const popupProfile = new PopupWithForm('#edit-popup', handleSubmitProfilePopup);
+const popupAdd = new PopupWithForm({
+  popupSelector: '#add-popup',
+  submitCallback: data => {
+    popupAdd.close();
+  }
+});
+const popupProfile = new PopupWithForm({
+  popupSelector: '#edit-popup',
+  submitCallback: data => {
+    userInfo.setUserInfo({ name: data.inputName, description: data.inputJob });
+    popupProfile.close();
+  }
+});
+
+// Создадим экземпляр класса UserInfo
+const userInfo = new UserInfo({
+  nameProfileSelector: '.profile__name',
+  descriptionProfileSelector: '.profile__description'
+});
 
 // ============================ функции ================================
 // функиця открытия изображения на весь экран
@@ -63,14 +81,12 @@ function openAddPopup() {
   popupAdd.open();
 }
 
+// Функция открытия попапа редактировани профиля
 function openEditPopup() {
+  const element = userInfo.getUserInfo();
+  nameInput.value = element.name;
+  jobInput.value = element.description;
   popupProfile.open();
-}
-
-// функция закрытия изображения на весь экран
-function closeImagePopup(event) {
-  event.stopPropaganation();
-  popupIamge.close();
 }
 
 // Функция обработчика события для попапа добавления фотографии

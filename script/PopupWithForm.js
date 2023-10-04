@@ -2,7 +2,7 @@ import Popup from './Popup.js';
 
 // Класс для работы с формами
 class PopupWithForm extends Popup {
-  constructor(popupSelector, submitCallback) {
+  constructor({ popupSelector, submitCallback }) {
     super(popupSelector);
     this._popupForm = this._popup.querySelector('.popup__form');
     this._submitBtn = this._popup.querySelector('.popup__button');
@@ -34,6 +34,11 @@ class PopupWithForm extends Popup {
     this._inputList.forEach(item => {
       item.value = '';
     });
+  }
+
+  // публичный метод, который не только открывает попап, но и подтягивает значения из профиля
+  open(data) {
+    super.open();
   }
 }
 
