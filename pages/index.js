@@ -6,32 +6,15 @@ import PopupWithImage from '../script/PopupWithImage.js';
 import PopupWithForm from '../script/PopupWithForm.js';
 import UserInfo from '../script/UserInfo.js';
 
-// Объявление всех переменных (sprint 4-6)
-const popupEditElement = document.querySelector('#edit-popup'); //Находим попап для редактирования профиля в DOM
+// ============================ sprint 8 ================================
+// =========================== константы ===============================
 const formEditElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
 const nameInput = formEditElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
 const jobInput = formEditElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
-const buttonPopupEditClose = document.querySelector('#close-edit'); //Кнопка закрытия popup редактирования профиля
-const nameProfile = document.querySelector('.profile__name'); //Само имя профиля в DOM
-const jobProfile = document.querySelector('.profile__description'); //Описание профиля в DOM
-const buttonProfileEdit = document.querySelector('.profile__button_type_edit'); //Кнопка редактирования профиля
-const buttonAllPopupCloseList = document.querySelectorAll('.popup__close-button'); //Псевдомассив всех кнопок закрытия popup
-const popupAddElement = document.querySelector('#add-popup'); // Находим попап для добавления новой карточки в DOM
-const formAddElement = document.querySelector('#add-form'); // Находим форму для добавления новой карточки в DOM
-const namePlace = formAddElement.querySelector('.popup__input_field_palce'); // Находим input для ввода названия нового места в DOM
-const nameLink = formAddElement.querySelector('.popup__input_field_link'); // Находим input для ввода ссылки на новое место в DOM
-const buttonAddProfile = document.querySelector('.profile__button_type_add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const buttonPopupAddClose = document.querySelector('#close-add'); //Находим кнопку открытия popup для добавления картинок в DOM
-const imagePopup = document.querySelector('#img-popup'); //Находим попап для октрытия карточки на весь экран
-const buttonPopupImageClose = document.querySelector('#close-img'); //Находим кнопку закрытия попап с изображением
-const image = imagePopup.querySelector('.popup__image'); //Выбрали картинку
-const caption = imagePopup.querySelector('.popup__caption'); //Выбрали подпись
 const formList = document.querySelectorAll('.popup__form');
-
 const buttonAddCard = document.querySelector('.profile__button_type_add');
 const buttonEditProfile = document.querySelector('.profile__button_type_edit');
 
-// ============================ sprint 8 ================================
 // ==================== создание экземпляров класса ====================
 // создадим экземпляр класса Section
 const cardsList = new Section(
@@ -87,16 +70,6 @@ function openEditPopup() {
   nameInput.value = element.name;
   jobInput.value = element.description;
   popupProfile.open();
-}
-
-// Функция обработчика события для попапа добавления фотографии
-function handleSubmitAddPopup(event) {
-  event.preventDefault();
-}
-
-// Функция обработчика события для попапа редактирования профиля
-function handleSubmitProfilePopup(event) {
-  event.preventDefault();
 }
 
 // ======================== обработчики событий ========================
