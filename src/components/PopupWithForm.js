@@ -24,7 +24,6 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', event => {
       event.preventDefault();
-      console.log(this._getInputValues());
       this._submitCallback(this._getInputValues());
     });
   }
@@ -35,11 +34,6 @@ class PopupWithForm extends Popup {
     this._inputList.forEach(item => {
       item.value = '';
     });
-  }
-
-  // публичный метод, который не только открывает попап, но и подтягивает значения из профиля
-  open(data) {
-    super.open();
   }
 }
 

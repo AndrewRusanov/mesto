@@ -36,4 +36,21 @@ const initialCards = [
   }
 ];
 
-export { configValidation, initialCards };
+// =========================== константы ===============================
+const formEditElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
+const nameInput = formEditElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
+const jobInput = formEditElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
+const formList = document.querySelectorAll('.popup__form');
+const buttonAddCard = document.querySelector('.profile__button_type_add');
+const buttonEditProfile = document.querySelector('.profile__button_type_edit');
+
+export {
+  configValidation,
+  initialCards,
+  formEditElement,
+  nameInput,
+  jobInput,
+  formList,
+  buttonAddCard,
+  buttonEditProfile
+};

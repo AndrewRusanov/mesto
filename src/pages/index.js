@@ -1,27 +1,28 @@
-import Card from '../script/Card.js';
-import FormValidator from '../script/FormValidator.js';
-import Section from '../script/Section.js';
-import { configValidation, initialCards } from '../utils/constants.js';
-import PopupWithImage from '../script/PopupWithImage.js';
-import PopupWithForm from '../script/PopupWithForm.js';
-import UserInfo from '../script/UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import {
+  configValidation,
+  initialCards,
+  formEditElement,
+  nameInput,
+  jobInput,
+  formList,
+  buttonAddCard,
+  buttonEditProfile
+} from '../../utils/constants.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 // ============================ sprint 8 ================================
-// =========================== константы ===============================
-const formEditElement = document.querySelector('#edit-form'); // Находим форму для редактирования профиля в DOM
-const nameInput = formEditElement.querySelector('.popup__input_field_name'); // Находим input для редактирования профиля в DOM
-const jobInput = formEditElement.querySelector('.popup__input_field_job'); // Находим input для редактирования профиля в DOM
-const formList = document.querySelectorAll('.popup__form');
-const buttonAddCard = document.querySelector('.profile__button_type_add');
-const buttonEditProfile = document.querySelector('.profile__button_type_edit');
-
 // ==================== создание экземпляров класса ====================
 // создадим экземпляр класса Section
 const cardsList = new Section(
   {
     items: initialCards,
     renderer: item => {
-      const newCard = new Card(item, '#element', openImagePopup);
+      const newCard = createCard(item);
       const cardElement = newCard.createCard();
       return cardElement;
     }
@@ -36,6 +37,7 @@ const popupIamge = new PopupWithImage('#img-popup');
 const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
+    cardsList.addItemPrepend({ name: data.inputPlace, link: data.inputLink });
     popupAdd.close();
   }
 });
@@ -54,6 +56,28 @@ const userInfo = new UserInfo({
 });
 
 // ============================ функции ================================
+// Функция, для создания новой карточки
+function createCard(data) {
+  const newCard = new Card(
+    {
+      name: data.name,
+      link: data.link
+    },
+    '#element',
+    openImagePopup
+  );
+  return newCard;
+}
+
+// Функция для добавления новой карточки
+function addCard(data) {
+  const card = new Card({
+    name: data.inputPlace,
+    link: data.inputLink
+  });
+  return card;
+}
+
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   popupIamge.open(imageCaption, imageLink);

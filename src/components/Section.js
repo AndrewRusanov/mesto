@@ -11,6 +11,12 @@ class Section {
     this._container.append(newElement);
   }
 
+  // публичный метод, который добавляет новую карточку в контейнер
+  addItemPrepend(item) {
+    const newElement = this._renderer(item);
+    this._container.prepend(newElement);
+  }
+
   renderItems() {
     this._initialArray.forEach(item => {
       this.addItem(item);
