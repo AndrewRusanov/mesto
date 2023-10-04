@@ -1,0 +1,19 @@
+import Popup from './Popup.js';
+
+// Класс PopupWithImage наследуется от Popup. Он должен перезаписывать родителский метод open
+class PopupWithImage extends Popup {
+  constructor(popupSelector) {
+    super(popupSelector);
+    this._image = this._popup.querySelector('.popup__image');
+    this._caption = this._popup.querySelector('.popup__caption');
+  }
+
+  open(name, link) {
+    this._image.src = link;
+    this._image.alt = name;
+    this._caption.textContent = name;
+    super.open();
+  }
+}
+
+export default PopupWithImage;

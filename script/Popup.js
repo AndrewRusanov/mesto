@@ -6,32 +6,38 @@ class Popup {
 
   //   приватный метод, который содержит логику закрытия попапа клавишей Esc
   _handleEscClose(event) {
-    event.key === 'Escape' && this.close();
-  }
-
-  //   приватный метод, который содержит логику закрытия попапа через Overlay
-  _handleOverlayClose(event) {
-    if (event.target === event.currentTarget) {
+    if (event.key === 'Escape') {
       this.close();
     }
   }
 
+  //   приватный метод, который содержит логику закрытия попапа через Overlay
+  _handleOverlayClose(event) {
+    if (event.target.classList.contains('popup_opened')) {
+      this.close();
+    }
+  }
   //   публичный метод, который отвечает за открытие попапа
   open() {
-    document.addEventListener('keydown', this._handleEscClose);
-    this._popup.classlist.add('popup__opened');
+    this._popup.classList.add('popup_opened');
+    //Из-за потери контекста явно привязываем this
+    document.addEventListener('keydown', this._handleEscClose.bind(this));
   }
 
   //   публичный метод, который отвечает за закрытие попапа
   close() {
+    this._popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._handleEscClose);
-    this._popup.classlist.remove('popup__opened');
   }
 
   //   публичный метод, который добавляет слушатель клика иконке закрытия попапа
   setEventListeners() {
-    this._popup.addEventListener('click', this._handleOverlayClose);
-    this._popupCloseBtn.addEventListener('click', this.close());
+    this._popup.addEventListener('click', event => {
+      this._handleOverlayClose(event);
+    });
+    this._popupCloseBtn.addEventListener('click', () => {
+      this.close();
+    });
   }
 }
 
