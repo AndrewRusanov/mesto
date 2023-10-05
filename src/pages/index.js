@@ -56,7 +56,9 @@ const userInfo = new UserInfo({
   nameProfileSelector: '.profile__name',
   descriptionProfileSelector: '.profile__description'
 });
-
+// Создадим экземлпяры класса FormValidator
+const popupAddValidation = new FormValidator(configValidation, popupAdd._popupForm);
+const popupProfileValidation = new FormValidator(configValidation, popupProfile._popupForm);
 // ============================ функции ================================
 // Функция, для создания новой карточки
 function createCard(data) {
@@ -78,6 +80,7 @@ function openImagePopup(imageLink, imageCaption) {
 
 //Функция открытяи попапа добавления новой карточки
 function openAddPopup() {
+  popupAddValidation.enableValidation();
   popupAdd.open();
 }
 
@@ -86,6 +89,7 @@ function openEditPopup() {
   const element = userInfo.getUserInfo();
   nameInput.value = element.name;
   jobInput.value = element.description;
+  popupProfileValidation.enableValidation();
   popupProfile.open();
 }
 
