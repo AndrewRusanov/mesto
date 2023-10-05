@@ -71,15 +71,6 @@ function createCard(data) {
   return newCard;
 }
 
-// Функция для добавления новой карточки
-function addCard(data) {
-  const card = new Card({
-    name: data.inputPlace,
-    link: data.inputLink
-  });
-  return card;
-}
-
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   popupIamge.open(imageCaption, imageLink);
@@ -100,14 +91,13 @@ function openEditPopup() {
 
 // ======================== обработчики событий ========================
 
-// Слушатели событий
+// Слушатели событий для классов
 popupIamge.setEventListeners();
 popupAdd.setEventListeners();
 popupProfile.setEventListeners();
-
+// Слушатели событий для кнопок
 buttonAddCard.addEventListener('click', openAddPopup);
 buttonEditProfile.addEventListener('click', openEditPopup);
-
 // ======================== инициализация страницы ========================
 // вызовем метод renderItem, чтобы инициализировать начальный контент страницы
 cardsList.renderItems();

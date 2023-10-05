@@ -2,6 +2,8 @@ class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
     this._popupCloseBtn = this._popup.querySelector('.popup__close-button');
+    //Из-за потери контекста явно привязываем this именно в конструкторе, чтобы движок браузера каждый раз не пересоздавал ссылку на this.
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   //   приватный метод, который содержит логику закрытия попапа клавишей Esc
@@ -20,8 +22,8 @@ class Popup {
   //   публичный метод, который отвечает за открытие попапа
   open() {
     this._popup.classList.add('popup_opened');
-    //Из-за потери контекста явно привязываем this
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
+
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   //   публичный метод, который отвечает за закрытие попапа
