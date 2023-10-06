@@ -70,27 +70,13 @@ function createCard(data) {
     '#element',
     openImagePopup
   );
+  // вешаем слушателя
   return newCard;
 }
 
 // функиця открытия изображения на весь экран
 function openImagePopup(imageLink, imageCaption) {
   popupIamge.open(imageCaption, imageLink);
-}
-
-//Функция открытяи попапа добавления новой карточки
-function openAddPopup() {
-  popupAddValidation.enableValidation();
-  popupAdd.open();
-}
-
-// Функция открытия попапа редактировани профиля
-function openEditPopup() {
-  const element = userInfo.getUserInfo();
-  nameInput.value = element.name;
-  jobInput.value = element.description;
-  popupProfileValidation.enableValidation();
-  popupProfile.open();
 }
 
 // ======================== обработчики событий ========================
@@ -100,8 +86,17 @@ popupIamge.setEventListeners();
 popupAdd.setEventListeners();
 popupProfile.setEventListeners();
 // Слушатели событий для кнопок
-buttonAddCard.addEventListener('click', openAddPopup);
-buttonEditProfile.addEventListener('click', openEditPopup);
+buttonAddCard.addEventListener('click', () => {
+  popupAdd.open();
+  popupAddValidation.resetValidation();
+});
+buttonEditProfile.addEventListener('click', () => {
+  const element = userInfo.getUserInfo();
+  nameInput.value = element.name;
+  jobInput.value = element.description;
+  popupProfile.open();
+  popupProfileValidation.resetValidation();
+});
 // ======================== инициализация страницы ========================
 // вызовем метод renderItem, чтобы инициализировать начальный контент страницы
 cardsList.renderItems();

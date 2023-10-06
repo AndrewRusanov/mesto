@@ -4,6 +4,7 @@ export default class FormValidator {
     this._formElement = formElement;
     this._submitButton = this._formElement.querySelector(this._config.submitButtonSelector);
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector));
+    this._formSelector = this._config.formSelector;
   }
 
   //Функция делает видимым сообщение с ошибкой
@@ -59,6 +60,14 @@ export default class FormValidator {
         this._checkValidity(inputElement);
         this._toggleButtonState();
       });
+    });
+  }
+
+  // метод сброса результатов проверки формы
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach(input => {
+      this._hideInputError(input);
     });
   }
 
