@@ -100,9 +100,6 @@ buttonEditProfile.addEventListener('click', () => {
 // ======================== инициализация страницы ========================
 // вызовем метод renderItem, чтобы инициализировать начальный контент страницы
 cardsList.renderItems();
-
-// подключим валидацию для каждой формы
-formList.forEach(formItem => {
-  const formValidator = new FormValidator(configValidation, formItem);
-  formValidator.enableValidation();
-});
+// добавляем валидацию для каждой из форм
+popupAddValidation.enableValidation();
+popupProfileValidation.enableValidation();
