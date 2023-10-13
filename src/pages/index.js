@@ -54,7 +54,8 @@ const popupProfile = new PopupWithForm({
 // Создадим экземпляр класса UserInfo
 const userInfo = new UserInfo({
   nameProfileSelector: '.profile__name',
-  descriptionProfileSelector: '.profile__description'
+  descriptionProfileSelector: '.profile__description',
+  avatarProfileSelector: '.profile__avatar'
 });
 // Создадим экземлпяры класса FormValidator
 const popupAddValidation = new FormValidator(configValidation, popupAdd._popupForm);
@@ -103,3 +104,15 @@ cardsList.renderItems();
 // добавляем валидацию для каждой из форм
 popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
+
+// ==================================== sprint 9 ========================================
+// ==================== Загрузка информации о пользователе с сервера ====================
+fetch('https://nomoreparties.co/v1/cohort-77/users/me', {
+  headers: {
+    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
+  }
+})
+  .then(res => res.json())
+  .then(result => {
+    userInfo.setUserInfo({ name: result.name, description: result.about, avatar: result.avatar });
+  });
