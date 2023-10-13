@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+  <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+  <body class="main">
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="bbe2a6eafac19c3d031c.svg"
+          alt="Логотип
+        проекта 'Место'"
+        />
+      </header>
+      <main>
+        <section class="profile">
+          <div class="profile__flex">
+            <img
+              class="profile__avatar"
+              src="fe6c4f9454995a436f2e.png"
+              alt="Аватар профиля"
+            />
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__button profile__button_type_edit">
+                <img
+                  class="profile__button-edit"
+                  src="af236f6cf67005f1d7aa.svg"
+                  alt="Кнопка редактирования"
+                />
+              </button>
+              <p class="profile__description">Исследователь океана</p>
+            </div>
+          </div>
+          <button type="button" class="profile__button profile__button_type_add">
+            <img
+              class="profile__button-add"
+              src="bed8c136e13907f5eefb.svg"
+              alt="Кнопка добавления изображения"
+            />
+          </button>
+        </section>
+        <section class="elements" id="elements"></section>
+        <div class="popup" id="edit-popup">
+          <div class="popup__container">
+            <button type="button" class="popup__close-button" id="close-edit">
+              <img
+                class="popup__close-icon"
+                src="039f1f5203f653b4bacd.svg"
+                alt="Кнопка закрытия окна"
+              />
+            </button>
+            <form name="popup__form" class="popup__form" id="edit-form" novalidate>
+              <h2 class="popup__label">Редактировать профиль</h2>
+              <input
+                name="inputName"
+                type="text"
+                class="popup__input popup__input_field_name"
+                placeholder="Имя"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span class="popup__error" id="inputName-error"></span>
+              <input
+                name="inputJob"
+                type="text"
+                class="popup__input popup__input_field_job"
+                placeholder="О себе"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span class="popup__error" id="inputJob-error"></span>
+              <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup" id="add-popup">
+          <div class="popup__container">
+            <button type="reset" class="popup__close-button" id="close-add">
+              <img
+                class="popup__close-icon"
+                src="039f1f5203f653b4bacd.svg"
+                alt="Кнопка закрытия окна"
+              />
+            </button>
+            <form name="popup__form" class="popup__form" id="add-form" novalidate>
+              <h2 class="popup__label">Новое место</h2>
+              <input
+                name="inputPlace"
+                type="text"
+                class="popup__input popup__input_field_palce"
+                placeholder="Название"
+                required
+                minlength="2"
+                maxlength="30"
+              />
+              <span class="popup__error" id="inputPlace-error"></span>
+              <input
+                name="inputLink"
+                type="url"
+                class="popup__input popup__input_field_link"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span class="popup__error" id="inputLink-error"></span>
+              <button type="submit" class="popup__button">Сохранить</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_overlay" id="img-popup">
+          <div class="popup__figure">
+            <button type="button" class="popup__close-button" id="close-img">
+              <img
+                class="popup__close-icon"
+                src="039f1f5203f653b4bacd.svg"
+                alt="Кнопка закрытия окна"
+              />
+            </button>
+            <div class="popup__photo">
+              <img class="popup__image" />
+              <p class="popup__caption"></p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <p class="footer__text">&copy;2023 Mesto Russia</p>
+      </footer>
+    </div>
+    <template id="element">
+      <article class="element">
+        <button class="element__delete">
+          <img src="e3c42771bff3aaa52f76.svg" class="element__delete-icon" />
+        </button>
+        <img class="element__mask" />
+        <div class="element__description">
+          <h2 class="element__text"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>
