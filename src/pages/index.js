@@ -19,19 +19,6 @@ import UserInfo from '../components/UserInfo.js';
 
 // ============================ sprint 8 ================================
 // ==================== создание экземпляров класса ====================
-// создадим экземпляр класса Section
-const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: item => {
-      const newCard = createCard(item);
-      const cardElement = newCard.createCard();
-      return cardElement;
-    }
-  },
-  '#elements'
-);
-
 // Создадим экземпляр класса PopupWithImage
 const popupIamge = new PopupWithImage('#img-popup');
 
@@ -99,8 +86,6 @@ buttonEditProfile.addEventListener('click', () => {
   popupProfileValidation.resetValidation();
 });
 // ======================== инициализация страницы ========================
-// вызовем метод renderItem, чтобы инициализировать начальный контент страницы
-cardsList.renderItems();
 // добавляем валидацию для каждой из форм
 popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
@@ -115,4 +100,28 @@ fetch('https://nomoreparties.co/v1/cohort-77/users/me', {
   .then(res => res.json())
   .then(result => {
     userInfo.setUserInfo({ name: result.name, description: result.about, avatar: result.avatar });
+  });
+
+// ============================== Загрузка карточек сервера ==============================
+fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
+  headers: {
+    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
+  }
+})
+  .then(res => res.json())
+  .then(result => {
+    // создадим экземпляр класса Section
+    const cardsList = new Section(
+      {
+        items: result,
+        renderer: item => {
+          const newCard = createCard(item);
+          const cardElement = newCard.createCard();
+          return cardElement;
+        }
+      },
+      '#elements'
+    );
+    // вызовем метод renderItems, чтобы инициализировать начальный контент страницы
+    cardsList.renderItems();
   });
