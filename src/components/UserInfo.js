@@ -1,7 +1,8 @@
 class UserInfo {
-  constructor({ nameProfileSelector, descriptionProfileSelector }) {
+  constructor({ nameProfileSelector, descriptionProfileSelector, avatarProfileSelector }) {
     this._nameProfile = document.querySelector(nameProfileSelector);
     this._descriptionProfile = document.querySelector(descriptionProfileSelector);
+    this._avatarProfile = document.querySelector(avatarProfileSelector);
   }
 
   //   публичный метод, который возвращает объект с данными пользователя (для подтягивания данных из профиля в попап)
@@ -13,9 +14,10 @@ class UserInfo {
   }
 
   //   публичный метод, который принимает новые данные пользователя и добавляет их на страницу (для подтягивания данных из попапа в профиль)
-  setUserInfo({ name, description }) {
+  setUserInfo({ name, description, avatar }) {
     this._nameProfile.textContent = name;
     this._descriptionProfile.textContent = description;
+    this._avatarProfile.src = avatar;
   }
 }
 
