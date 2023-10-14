@@ -16,6 +16,7 @@ import {
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 // ============================ sprint 8 ================================
 // ==================== создание экземпляров класса ====================
@@ -91,16 +92,13 @@ popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
 
 // ==================================== sprint 9 ========================================
-// ==================== Загрузка информации о пользователе с сервера ====================
-fetch('https://nomoreparties.co/v1/cohort-77/users/me', {
+// ============================= Создание экземпляров класса ============================
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77',
   headers: {
     authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
   }
-})
-  .then(res => res.json())
-  .then(result => {
-    userInfo.setUserInfo({ name: result.name, description: result.about, avatar: result.avatar });
-  });
+});
 
 // ============================== Загрузка карточек сервера ==============================
 fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
