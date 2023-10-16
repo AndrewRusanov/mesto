@@ -103,6 +103,11 @@ const api = new Api({
 
 // ======================== Загрузка начальной информации с сервера ======================
 // ========================== Информация о пользователе (профиль) ========================
+// Используем Promise.all, чтобы выполнить промисы
+Promise.all([api.getUserInformation()]).then(values => {
+  userInfo.setUserInfo(values[0]);
+});
+console.log(api.getUserInformation());
 userInfo.setUserInfo(api.getUserInformation());
 // ============================== Загрузка карточек сервера ==============================
 // fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
