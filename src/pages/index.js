@@ -40,7 +40,13 @@ const popupAdd = new PopupWithForm({
 const popupProfile = new PopupWithForm({
   popupSelector: '#edit-popup',
   submitCallback: data => {
-    api.editUserInformation({ name: data.inputName, about: data.inputJob });
+    api.editUserInformation({ name: data.inputName, about: data.inputJob }).then(result =>
+      userInfo.setUserInfo({
+        name: result.name,
+        about: result.about,
+        avatar: result.avatar
+      })
+    );
     popupProfile.close();
   }
 });
