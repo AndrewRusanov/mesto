@@ -5,7 +5,6 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import {
   configValidation,
-  initialCards,
   formEditElement,
   nameInput,
   jobInput,
@@ -104,31 +103,18 @@ const api = new Api({
 // ======================== Загрузка начальной информации с сервера ======================
 // ========================== Информация о пользователе (профиль) ========================
 // Используем Promise.all, чтобы выполнить промисы
-Promise.all([api.getUserInformation()]).then(values => {
+Promise.all([api.getUserInformation(), api.getCards()]).then(values => {
   userInfo.setUserInfo(values[0]);
+  const cardList = new Section(
+    {
+      items: values[1],
+      renderer: item => {
+        const newCard = createCard(item);
+        const cardElement = newCard.createCard();
+        return cardElement;
+      }
+    },
+    '#elements'
+  );
+  cardList.renderItems();
 });
-console.log(api.getUserInformation());
-userInfo.setUserInfo(api.getUserInformation());
-// ============================== Загрузка карточек сервера ==============================
-// fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
-//   headers: {
-//     authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
-//   }
-// })
-//   .then(res => res.json())
-//   .then(result => {
-//     // создадим экземпляр класса Section
-//     const cardsList = new Section(
-//       {
-//         items: result,
-//         renderer: item => {
-//           const newCard = createCard(item);
-//           const cardElement = newCard.createCard();
-//           return cardElement;
-//         }
-//       },
-//       '#elements'
-//     );
-//     // вызовем метод renderItems, чтобы инициализировать начальный контент страницы
-//     cardsList.renderItems();
-//   });
