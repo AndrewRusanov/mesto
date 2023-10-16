@@ -16,9 +16,16 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+// ==================================== sprint 9 ========================================
+// ============================= Создание экземпляров класса ============================
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77',
+  headers: {
+    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f',
+    'Content-Type': 'application/json'
+  }
+});
 
-// ============================ sprint 8 ================================
-// ==================== создание экземпляров класса ====================
 // Создадим экземпляр класса PopupWithImage
 const popupIamge = new PopupWithImage('#img-popup');
 
@@ -33,7 +40,7 @@ const popupAdd = new PopupWithForm({
 const popupProfile = new PopupWithForm({
   popupSelector: '#edit-popup',
   submitCallback: data => {
-    userInfo.setUserInfo({ name: data.inputName, description: data.inputJob });
+    api.editUserInformation({ name: data.inputName, about: data.inputJob });
     popupProfile.close();
   }
 });
@@ -47,7 +54,27 @@ const userInfo = new UserInfo({
 // Создадим экземлпяры класса FormValidator
 const popupAddValidation = new FormValidator(configValidation, popupAdd._popupForm);
 const popupProfileValidation = new FormValidator(configValidation, popupProfile._popupForm);
-// ============================ функции ================================
+
+// ======================== Загрузка начальной информации с сервера ======================
+// ========================== Информация о пользователе (профиль) ========================
+// Используем Promise.all, чтобы выполнить промисы
+Promise.all([api.getUserInformation(), api.getCards()]).then(values => {
+  userInfo.setUserInfo(values[0]);
+  const cardList = new Section(
+    {
+      items: values[1],
+      renderer: item => {
+        const newCard = createCard(item);
+        const cardElement = newCard.createCard();
+        return cardElement;
+      }
+    },
+    '#elements'
+  );
+  cardList.renderItems();
+});
+
+// ===================================== функции =========================================
 // Функция, для создания новой карточки
 function createCard(data) {
   const newCard = new Card(
@@ -89,32 +116,3 @@ buttonEditProfile.addEventListener('click', () => {
 // добавляем валидацию для каждой из форм
 popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
-
-// ==================================== sprint 9 ========================================
-// ============================= Создание экземпляров класса ============================
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77',
-  headers: {
-    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f',
-    'Content-Type': 'application/json'
-  }
-});
-
-// ======================== Загрузка начальной информации с сервера ======================
-// ========================== Информация о пользователе (профиль) ========================
-// Используем Promise.all, чтобы выполнить промисы
-Promise.all([api.getUserInformation(), api.getCards()]).then(values => {
-  userInfo.setUserInfo(values[0]);
-  const cardList = new Section(
-    {
-      items: values[1],
-      renderer: item => {
-        const newCard = createCard(item);
-        const cardElement = newCard.createCard();
-        return cardElement;
-      }
-    },
-    '#elements'
-  );
-  cardList.renderItems();
-});
