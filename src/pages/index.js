@@ -96,30 +96,34 @@ popupProfileValidation.enableValidation();
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77',
   headers: {
-    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
+    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f',
+    'Content-Type': 'application/json'
   }
 });
 
+// ======================== Загрузка начальной информации с сервера ======================
+// ========================== Информация о пользователе (профиль) ========================
+userInfo.setUserInfo(api.getUserInformation());
 // ============================== Загрузка карточек сервера ==============================
-fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
-  headers: {
-    authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
-  }
-})
-  .then(res => res.json())
-  .then(result => {
-    // создадим экземпляр класса Section
-    const cardsList = new Section(
-      {
-        items: result,
-        renderer: item => {
-          const newCard = createCard(item);
-          const cardElement = newCard.createCard();
-          return cardElement;
-        }
-      },
-      '#elements'
-    );
-    // вызовем метод renderItems, чтобы инициализировать начальный контент страницы
-    cardsList.renderItems();
-  });
+// fetch('https://mesto.nomoreparties.co/v1/cohort-77/cards', {
+//   headers: {
+//     authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f'
+//   }
+// })
+//   .then(res => res.json())
+//   .then(result => {
+//     // создадим экземпляр класса Section
+//     const cardsList = new Section(
+//       {
+//         items: result,
+//         renderer: item => {
+//           const newCard = createCard(item);
+//           const cardElement = newCard.createCard();
+//           return cardElement;
+//         }
+//       },
+//       '#elements'
+//     );
+//     // вызовем метод renderItems, чтобы инициализировать начальный контент страницы
+//     cardsList.renderItems();
+//   });
