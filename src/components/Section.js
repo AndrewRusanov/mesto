@@ -1,6 +1,5 @@
 class Section {
-  constructor({ items, renderer }, sectionSelector) {
-    this._initialArray = items;
+  constructor({ renderer }, sectionSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(sectionSelector);
   }
@@ -17,8 +16,8 @@ class Section {
     this._container.prepend(newElement);
   }
 
-  renderItems() {
-    this._initialArray.forEach(item => {
+  renderItems(cards) {
+    cards.forEach(item => {
       this.addItem(item);
     });
   }

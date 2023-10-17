@@ -5,10 +5,10 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import {
   configValidation,
-  formEditElement,
+  // formEditElement,
   nameInput,
   jobInput,
-  formList,
+  // formList,
   buttonAddCard,
   buttonEditProfile
 } from '../utils/constants.js';
@@ -26,17 +26,32 @@ const api = new Api({
   }
 });
 
+// Создадим экземлпяр класса Section
+const cardList = new Section(
+  {
+    renderer: item => {
+      const newCard = createCard(item);
+      const cardElement = newCard.createCard();
+      return cardElement;
+    }
+  },
+  '#elements'
+);
 // Создадим экземпляр класса PopupWithImage
 const popupIamge = new PopupWithImage('#img-popup');
 
-// Создадим экземпляры класса PopuoWithForm
+// Создадим экземпляр класса PopupWithForm (add card)
 const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
-    cardsList.addItemPrepend({ name: data.inputPlace, link: data.inputLink });
-    popupAdd.close();
+    console.log('data', data);
+    api.addNewCard({ name: data.inputPlace, link: data.inputLink }).then(cardData => {
+      cardList.addItemPrepend(cardData);
+      popupAdd.close();
+    });
   }
 });
+// Создадим экземпляр класса PopupWithForm (edit profile)
 const popupProfile = new PopupWithForm({
   popupSelector: '#edit-popup',
   submitCallback: data => {
@@ -64,20 +79,9 @@ const popupProfileValidation = new FormValidator(configValidation, popupProfile.
 // ======================== Загрузка начальной информации с сервера ======================
 // ========================== Информация о пользователе (профиль) ========================
 // Используем Promise.all, чтобы выполнить промисы
-Promise.all([api.getUserInformation(), api.getCards()]).then(values => {
-  userInfo.setUserInfo(values[0]);
-  const cardList = new Section(
-    {
-      items: values[1],
-      renderer: item => {
-        const newCard = createCard(item);
-        const cardElement = newCard.createCard();
-        return cardElement;
-      }
-    },
-    '#elements'
-  );
-  cardList.renderItems();
+Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
+  userInfo.setUserInfo(userData);
+  cardList.renderItems(cards);
 });
 
 // ===================================== функции =========================================
@@ -118,7 +122,6 @@ buttonEditProfile.addEventListener('click', () => {
   popupProfile.open();
   popupProfileValidation.resetValidation();
 });
-// ======================== инициализация страницы ========================
 // добавляем валидацию для каждой из форм
 popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
