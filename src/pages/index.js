@@ -16,6 +16,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
+import PopupDeleteCard from '../components/PopupDeleteCard.js';
 // ==================================== sprint 9 ========================================
 // ============================= Создание экземпляров класса ============================
 const api = new Api({
@@ -24,6 +25,12 @@ const api = new Api({
     authorization: 'd686f3c3-25e3-4358-9762-4cd086d00e0f',
     'Content-Type': 'application/json'
   }
+});
+
+// Создадим экземпляр класса PopupDeleteCard
+const popupDelete = new PopupDeleteCard({
+  popupSelector: '#delete-popup',
+  submitCallback: () => {}
 });
 
 // Создадим экземлпяр класса Section
@@ -81,7 +88,6 @@ const popupProfileValidation = new FormValidator(configValidation, popupProfile.
 // Используем Promise.all, чтобы выполнить промисы
 Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
   userInfo.setUserInfo(userData);
-  console.log('Данные карт', cards);
   cardList.renderItems(cards);
 });
 
@@ -97,7 +103,10 @@ function createCard(data) {
       owner: data.owner
     },
     '#element',
-    openImagePopup
+    openImagePopup,
+    () => {
+      popupDelete.open();
+    }
   );
   // вешаем слушателя
   return newCard;
@@ -114,6 +123,7 @@ function openImagePopup(imageLink, imageCaption) {
 popupIamge.setEventListeners();
 popupAdd.setEventListeners();
 popupProfile.setEventListeners();
+popupDelete.setEventListeners();
 // Слушатели событий для кнопок
 buttonAddCard.addEventListener('click', () => {
   popupAdd.open();

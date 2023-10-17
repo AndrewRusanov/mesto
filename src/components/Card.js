@@ -1,11 +1,17 @@
 export default class Card {
-  constructor({ name, link, likes, _id, owner }, templateSelector, handleCardClick) {
+  constructor(
+    { name, link, likes, _id, owner },
+    templateSelector,
+    handleCardClick,
+    onOpenDeleteCard
+  ) {
     this._name = name;
     this._link = link;
     this._likes = likes;
     this._cardId = _id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._onOpenDeleteCard = onOpenDeleteCard;
   }
 
   _getTemplate() {
@@ -19,7 +25,9 @@ export default class Card {
 
   // Удаление карточки
   _handleCardDelete() {
-    this._element.remove();
+    console.log('Я нажал на кнопку удалить');
+    this._onOpenDeleteCard();
+    // this._element.remove();
   }
 
   // Лайк на карточку
@@ -48,6 +56,7 @@ export default class Card {
     this._mask.src = this._link;
     this._mask.alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
+    this._deleteButton = this._element.querySelector('.element__delete');
     this._element.querySelector('.element__like-count').textContent = this._likes.length;
     this._setEventListeners(); //Установили сразу все слушатели на карточку
 
