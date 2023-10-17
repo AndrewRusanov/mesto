@@ -3,12 +3,14 @@ export default class Card {
     { name, link, likes, _id, owner },
     templateSelector,
     handleCardClick,
-    onOpenDeleteCard
+    onOpenDeleteCard,
+    userId
   ) {
     this._name = name;
     this._link = link;
     this._likes = likes;
     this._cardId = _id;
+    this._isUserId = owner._id === userId;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._onOpenDeleteCard = onOpenDeleteCard;
@@ -25,9 +27,7 @@ export default class Card {
 
   // Удаление карточки
   _handleCardDelete() {
-    console.log('Я нажал на кнопку удалить');
     this._onOpenDeleteCard();
-    // this._element.remove();
   }
 
   // Лайк на карточку
@@ -37,9 +37,14 @@ export default class Card {
 
   _setEventListeners() {
     // Обработчик события удаления
-    this._element.querySelector('.element__delete').addEventListener('click', () => {
-      this._handleCardDelete();
-    });
+    if (this._isUserId) {
+      this._element.querySelector('.element__delete').addEventListener('click', () => {
+        this._handleCardDelete();
+      });
+    } else {
+      this._deleteButton.remove();
+    }
+
     // Обработчик события like
     this._element.querySelector('.element__like').addEventListener('click', event => {
       this._handleLikeToggle(event);

@@ -87,6 +87,7 @@ const popupProfileValidation = new FormValidator(configValidation, popupProfile.
 // ========================== Информация о пользователе (профиль) ========================
 // Используем Promise.all, чтобы выполнить промисы
 Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
+  // console.log(userData);
   userInfo.setUserInfo(userData);
   cardList.renderItems(cards);
 });
@@ -106,9 +107,9 @@ function createCard(data) {
     openImagePopup,
     () => {
       popupDelete.open();
-    }
+    },
+    userInfo.getUserInfo().userId
   );
-  // вешаем слушателя
   return newCard;
 }
 
