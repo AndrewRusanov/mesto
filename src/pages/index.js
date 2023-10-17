@@ -44,8 +44,8 @@ const popupIamge = new PopupWithImage('#img-popup');
 const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
-    console.log('data', data);
     api.addNewCard({ name: data.inputPlace, link: data.inputLink }).then(cardData => {
+      console.log('Данные новой карты', cardData);
       cardList.addItemPrepend(cardData);
       popupAdd.close();
     });
@@ -81,6 +81,7 @@ const popupProfileValidation = new FormValidator(configValidation, popupProfile.
 // Используем Promise.all, чтобы выполнить промисы
 Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
   userInfo.setUserInfo(userData);
+  console.log('Данные карт', cards);
   cardList.renderItems(cards);
 });
 
@@ -90,7 +91,10 @@ function createCard(data) {
   const newCard = new Card(
     {
       name: data.name,
-      link: data.link
+      link: data.link,
+      likes: data.likes,
+      _id: data._id,
+      owner: data.owner
     },
     '#element',
     openImagePopup

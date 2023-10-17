@@ -63,7 +63,6 @@ export default class Api {
 
   // Добавление новой карточки
   addNewCard({ name, link }) {
-    debugger;
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: {
