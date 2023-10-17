@@ -1,7 +1,9 @@
 export default class Card {
-  constructor({ name, link }, templateSelector, handleCardClick) {
+  constructor({ name, link, likes, _id, owner }, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
+    this._likes = likes;
+    this._cardId = _id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -46,6 +48,7 @@ export default class Card {
     this._mask.src = this._link;
     this._mask.alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
+    this._element.querySelector('.element__like-count').textContent = this._likes.length;
     this._setEventListeners(); //Установили сразу все слушатели на карточку
 
     return this._element;
