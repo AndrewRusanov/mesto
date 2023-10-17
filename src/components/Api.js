@@ -60,4 +60,25 @@ export default class Api {
       })
       .catch(err => console.log(err));
   }
+
+  // Добавление новой карточки
+  addNewCard({ name, link }) {
+    debugger;
+    return fetch(`${this.baseUrl}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, link })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
+      })
+      .catch(err => console.log(err));
+  }
 }
