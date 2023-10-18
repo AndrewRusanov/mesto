@@ -31,10 +31,13 @@ const popupDelete = new PopupDeleteCard({
   popupSelector: '#delete-popup',
   submitCallback: (event, { cardId, card }) => {
     event.preventDefault();
-    api.deleteCard(cardId).then(() => {
-      card.remove();
-      popupDelete.close();
-    });
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        card.remove();
+        popupDelete.close();
+      })
+      .catch(err => console.log(`Ошибка удаления карточки: ${err}`));
   }
 });
 
@@ -56,34 +59,44 @@ const popupIamge = new PopupWithImage('#img-popup');
 const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
-    api.addNewCard({ name: data.inputPlace, link: data.inputLink }).then(cardData => {
-      cardList.addItemPrepend(cardData);
-      popupAdd.close();
-    });
+    api
+      .addNewCard({ name: data.inputPlace, link: data.inputLink })
+      .then(cardData => {
+        cardList.addItemPrepend(cardData);
+        popupAdd.close();
+      })
+      .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`));
   }
 });
 // Создадим экземпляр класса PopupWithForm (edit profile)
 const popupProfile = new PopupWithForm({
   popupSelector: '#edit-popup',
   submitCallback: data => {
-    api.editUserInformation({ name: data.inputName, about: data.inputJob }).then(result =>
-      userInfo.setUserInfo({
-        name: result.name,
-        about: result.about,
-        avatar: result.avatar
-      })
-    );
-    popupProfile.close();
+    api
+      .editUserInformation({ name: data.inputName, about: data.inputJob })
+      .then(
+        result =>
+          userInfo.setUserInfo({
+            name: result.name,
+            about: result.about,
+            avatar: result.avatar
+          }),
+        popupProfile.close()
+      )
+      .catch(err => console.log(`Ошибка редактирования профиля: ${err}`));
   }
 });
 // Создадим экземпляр класса PopupWithForm (edit Avatar)
 const popupAvatar = new PopupWithForm({
   popupSelector: '#avatar-popup',
   submitCallback: data => {
-    api.editAvatar(data.inputLink).then(result => {
-      userInfo.setUserInfo(result);
-      popupAvatar.close();
-    });
+    api
+      .editAvatar(data.inputLink)
+      .then(result => {
+        userInfo.setUserInfo(result);
+        popupAvatar.close();
+      })
+      .catch(err => console.log(`Ошибка изменения аватара: ${err}`));
   }
 });
 
@@ -101,10 +114,12 @@ const popupAvatarValidation = new FormValidator(configValidation, popupAvatar._p
 // ======================== Загрузка начальной информации с сервера ======================
 // ========================== Информация о пользователе (профиль) ========================
 // Используем Promise.all, чтобы выполнить промисы
-Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
-  userInfo.setUserInfo(userData);
-  cardList.renderItems(cards);
-});
+Promise.all([api.getUserInformation(), api.getCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    cardList.renderItems(cards);
+  })
+  .catch(err => console.log(`Ошибка загурзки информации о пользователе/карточек: ${err}`));
 
 // ===================================== функции =========================================
 // Функция, для создания новой карточки
@@ -124,7 +139,10 @@ function createCard(data) {
     },
     userInfo.getUserInfo().userId,
     card => {
-      api.likeCard(card.getCardInfo()).then(res => card.updateLike(res));
+      api
+        .likeCard(card.getCardInfo())
+        .then(res => card.updateLike(res))
+        .catch(err => console.log(`Ошибка добавления лайка: ${err}`));
     }
   );
   return newCard;
