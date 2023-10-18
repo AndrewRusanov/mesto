@@ -59,19 +59,24 @@ const popupIamge = new PopupWithImage('#img-popup');
 const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
+    popupAdd.renderLoading(true);
     api
       .addNewCard({ name: data.inputPlace, link: data.inputLink })
       .then(cardData => {
         cardList.addItemPrepend(cardData);
         popupAdd.close();
       })
-      .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`));
+      .catch(err => console.log(`Ошибка добавления новой карточки: ${err}`))
+      .finally(() => {
+        popupAdd.renderLoading(false, 'Создать');
+      });
   }
 });
 // Создадим экземпляр класса PopupWithForm (edit profile)
 const popupProfile = new PopupWithForm({
   popupSelector: '#edit-popup',
   submitCallback: data => {
+    popupProfile.renderLoading(true);
     api
       .editUserInformation({ name: data.inputName, about: data.inputJob })
       .then(
@@ -83,20 +88,27 @@ const popupProfile = new PopupWithForm({
           }),
         popupProfile.close()
       )
-      .catch(err => console.log(`Ошибка редактирования профиля: ${err}`));
+      .catch(err => console.log(`Ошибка редактирования профиля: ${err}`))
+      .finally(() => {
+        popupProfile.renderLoading(false, 'Сохранить');
+      });
   }
 });
 // Создадим экземпляр класса PopupWithForm (edit Avatar)
 const popupAvatar = new PopupWithForm({
   popupSelector: '#avatar-popup',
   submitCallback: data => {
+    popupAvatar.renderLoading(true);
     api
       .editAvatar(data.inputLink)
       .then(result => {
         userInfo.setUserInfo(result);
         popupAvatar.close();
       })
-      .catch(err => console.log(`Ошибка изменения аватара: ${err}`));
+      .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
+      .finally(() => {
+        popupAvatar.renderLoading(false, 'Сохранить');
+      });
   }
 });
 
