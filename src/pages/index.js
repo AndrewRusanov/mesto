@@ -112,7 +112,12 @@ function createCard(data) {
     (cardId, card) => {
       popupDelete.open(cardId, card);
     },
-    userInfo.getUserInfo().userId
+    userInfo.getUserInfo().userId,
+    card => {
+      // Тут метод, который принимает cardId и isLiked
+
+      api.likeCard(card.getCardInfo()).then(res => card.updateLike(res));
+    }
   );
   return newCard;
 }
