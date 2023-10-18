@@ -5,12 +5,11 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import {
   configValidation,
-  // formEditElement,
   nameInput,
   jobInput,
-  // formList,
   buttonAddCard,
-  buttonEditProfile
+  buttonEditProfile,
+  avatarContainer
 } from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -77,6 +76,16 @@ const popupProfile = new PopupWithForm({
     popupProfile.close();
   }
 });
+// Создадим экземпляр класса PopupWithForm (edit Avatar)
+const popupAvatar = new PopupWithForm({
+  popupSelector: '#avatar-popup',
+  submitCallback: data => {
+    api.editAvatar(data.inputLink).then(result => {
+      userInfo.setUserInfo(result);
+      popupAvatar.close();
+    });
+  }
+});
 
 // Создадим экземпляр класса UserInfo
 const userInfo = new UserInfo({
@@ -87,6 +96,7 @@ const userInfo = new UserInfo({
 // Создадим экземлпяры класса FormValidator
 const popupAddValidation = new FormValidator(configValidation, popupAdd._popupForm);
 const popupProfileValidation = new FormValidator(configValidation, popupProfile._popupForm);
+const popupAvatarValidation = new FormValidator(configValidation, popupAvatar._popupForm);
 
 // ======================== Загрузка начальной информации с сервера ======================
 // ========================== Информация о пользователе (профиль) ========================
@@ -114,8 +124,6 @@ function createCard(data) {
     },
     userInfo.getUserInfo().userId,
     card => {
-      // Тут метод, который принимает cardId и isLiked
-
       api.likeCard(card.getCardInfo()).then(res => card.updateLike(res));
     }
   );
@@ -134,6 +142,7 @@ popupIamge.setEventListeners();
 popupAdd.setEventListeners();
 popupProfile.setEventListeners();
 popupDelete.setEventListeners();
+popupAvatar.setEventListeners();
 // Слушатели событий для кнопок
 buttonAddCard.addEventListener('click', () => {
   popupAdd.open();
@@ -146,6 +155,12 @@ buttonEditProfile.addEventListener('click', () => {
   popupProfile.open();
   popupProfileValidation.resetValidation();
 });
+// Слушатель для редактирования аватара
+avatarContainer.addEventListener('click', () => {
+  popupAvatar.open();
+  popupAvatarValidation.resetValidation();
+});
 // добавляем валидацию для каждой из форм
 popupAddValidation.enableValidation();
 popupProfileValidation.enableValidation();
+popupAvatarValidation.enableValidation();
