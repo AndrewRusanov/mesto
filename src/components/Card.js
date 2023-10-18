@@ -27,7 +27,8 @@ export default class Card {
 
   // Удаление карточки
   _handleCardDelete() {
-    this._onOpenDeleteCard();
+    console.log('in Card', this._cardId, this._element);
+    this._onOpenDeleteCard({ cardId: this._cardId, card: this._element });
   }
 
   // Лайк на карточку

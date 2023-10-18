@@ -80,4 +80,23 @@ export default class Api {
       })
       .catch(err => console.log(err));
   }
+
+  // Удаление карточки
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
+      })
+      .catch(err => console.log(err));
+  }
 }
