@@ -32,7 +32,6 @@ const popupDelete = new PopupDeleteCard({
   popupSelector: '#delete-popup',
   submitCallback: (event, { cardId, card }) => {
     event.preventDefault();
-    console.log('popupSubmit', cardId, card);
     api.deleteCard(cardId).then(() => {
       card.remove();
       popupDelete.close();
@@ -93,7 +92,6 @@ const popupProfileValidation = new FormValidator(configValidation, popupProfile.
 // ========================== Информация о пользователе (профиль) ========================
 // Используем Promise.all, чтобы выполнить промисы
 Promise.all([api.getUserInformation(), api.getCards()]).then(([userData, cards]) => {
-  // console.log(userData);
   userInfo.setUserInfo(userData);
   cardList.renderItems(cards);
 });
