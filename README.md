@@ -29,14 +29,11 @@
 - Закрытие popup'ов с помощью "Esc" и Overlay
 - Валидация форм
 - ООП, ES6 modules
+- - Работа с API
 
 ### Webpack
 
 - Сборка проекта посредством Webpack
-
-## Планируется доработать:
-
-- Работа с API
 
 ## [Ссылка на проект &rarr;](https://andrewrusanov.github.io/mesto/)
 
