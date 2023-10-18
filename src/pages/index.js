@@ -30,7 +30,14 @@ const api = new Api({
 // Создадим экземпляр класса PopupDeleteCard
 const popupDelete = new PopupDeleteCard({
   popupSelector: '#delete-popup',
-  submitCallback: () => {}
+  submitCallback: (event, { cardId, card }) => {
+    event.preventDefault();
+    console.log('popupSubmit', cardId, card);
+    api.deleteCard(cardId).then(() => {
+      card.remove();
+      popupDelete.close();
+    });
+  }
 });
 
 // Создадим экземлпяр класса Section
@@ -52,7 +59,6 @@ const popupAdd = new PopupWithForm({
   popupSelector: '#add-popup',
   submitCallback: data => {
     api.addNewCard({ name: data.inputPlace, link: data.inputLink }).then(cardData => {
-      console.log('Данные новой карты', cardData);
       cardList.addItemPrepend(cardData);
       popupAdd.close();
     });
@@ -105,8 +111,8 @@ function createCard(data) {
     },
     '#element',
     openImagePopup,
-    () => {
-      popupDelete.open();
+    (cardId, card) => {
+      popupDelete.open(cardId, card);
     },
     userInfo.getUserInfo().userId
   );
