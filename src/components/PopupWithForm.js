@@ -23,6 +23,12 @@ class PopupWithForm extends Popup {
     this._submitCallback(this._getInputValues());
   }
 
+  // Улучшение UX
+  renderLoading(isLoading, btnText = 'Сохранение...') {
+    this._submitBtn.disabled = isLoading;
+    this._submitBtn.textContent = btnText;
+  }
+
   //   публичный  метод, который помимо добавленяи слушателя кнопки закрытия добавляет слушателя сабмита формы
   setEventListeners() {
     super.setEventListeners();
