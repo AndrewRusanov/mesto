@@ -142,4 +142,24 @@ export default class Api {
   likeCard({ cardId, isLiked }) {
     return isLiked ? this._deleteLike(cardId) : this._addLike(cardId);
   }
+
+  //Обновление аватара пользователя
+  editAvatar(link) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: link
+      })
+    }).then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        Promise.reject(`Ошибка: ${res.status}`);
+      }
+    });
+  }
 }

@@ -43,6 +43,7 @@ const jobInput = formEditElement.querySelector('.popup__input_field_job'); // Н
 const formList = document.querySelectorAll('.popup__form');
 const buttonAddCard = document.querySelector('.profile__button_type_add');
 const buttonEditProfile = document.querySelector('.profile__button_type_edit');
+const avatarContainer = document.querySelector('.profile__avatar-container');
 
 export {
   configValidation,
@@ -50,7 +51,7 @@ export {
   formEditElement,
   nameInput,
   jobInput,
-  formList,
   buttonAddCard,
-  buttonEditProfile
+  buttonEditProfile,
+  avatarContainer
 };

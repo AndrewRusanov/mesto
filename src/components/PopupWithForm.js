@@ -19,12 +19,16 @@ class PopupWithForm extends Popup {
     return this._formData;
   }
 
+  _onSubmitHandler() {
+    this._submitCallback(this._getInputValues());
+  }
+
   //   публичный  метод, который помимо добавленяи слушателя кнопки закрытия добавляет слушателя сабмита формы
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener('submit', event => {
       event.preventDefault();
-      this._submitCallback(this._getInputValues());
+      this._onSubmitHandler();
     });
   }
 
