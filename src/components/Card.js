@@ -54,7 +54,7 @@ export default class Card {
 
   // Удаление карточки
   _handleCardDelete() {
-    this._onOpenDeleteCard({ cardId: this._cardId, card: this._element });
+    this._onOpenDeleteCard({ cardId: this._cardId, card: this });
   }
 
   _setEventListeners() {
@@ -76,6 +76,11 @@ export default class Card {
     this._mask.addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
     });
+  }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   createCard() {

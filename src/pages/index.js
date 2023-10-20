@@ -34,7 +34,7 @@ const popupDelete = new PopupDeleteCard({
     api
       .deleteCard(cardId)
       .then(() => {
-        card.remove();
+        card.removeCard();
         popupDelete.close();
       })
       .catch(err => console.log(`Ошибка удаления карточки: ${err}`));
@@ -79,15 +79,13 @@ const popupProfile = new PopupWithForm({
     popupProfile.renderLoading(true);
     api
       .editUserInformation({ name: data.inputName, about: data.inputJob })
-      .then(
-        result =>
-          userInfo.setUserInfo({
-            name: result.name,
-            about: result.about,
-            avatar: result.avatar
-          }),
-        popupProfile.close()
-      )
+      .then(result => {
+        userInfo.setUserInfo({
+          name: result.name,
+          about: result.about
+        });
+        popupProfile.close();
+      })
       .catch(err => console.log(`Ошибка редактирования профиля: ${err}`))
       .finally(() => {
         popupProfile.renderLoading(false, 'Сохранить');
@@ -100,9 +98,9 @@ const popupAvatar = new PopupWithForm({
   submitCallback: data => {
     popupAvatar.renderLoading(true);
     api
-      .editAvatar(data.inputLink)
+      .editAvatar(data.avatarLink)
       .then(result => {
-        userInfo.setUserInfo(result);
+        userInfo.setUserAvatar({ avatar: result.avatar });
         popupAvatar.close();
       })
       .catch(err => console.log(`Ошибка изменения аватара: ${err}`))
@@ -128,7 +126,14 @@ const popupAvatarValidation = new FormValidator(configValidation, popupAvatar._p
 // Используем Promise.all, чтобы выполнить промисы
 Promise.all([api.getUserInformation(), api.getCards()])
   .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData);
+    userInfo.setUserInfo({
+      name: userData.name,
+      about: userData.about,
+      _id: userData._id
+    });
+    userInfo.setUserAvatar({
+      avatar: userData.avatar
+    });
     cardList.renderItems(cards);
   })
   .catch(err => console.log(`Ошибка загурзки информации о пользователе/карточек: ${err}`));

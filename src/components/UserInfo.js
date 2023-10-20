@@ -16,11 +16,14 @@ class UserInfo {
   }
 
   //   публичный метод, который принимает новые данные пользователя и добавляет их на страницу (для подтягивания данных из попапа в профиль)
-  setUserInfo({ name, about, avatar, _id }) {
+  setUserInfo({ name, about, _id }) {
     this._nameProfile.textContent = name;
     this._descriptionProfile.textContent = about;
-    this._avatarProfile.src = avatar;
     this._userId = _id;
+  }
+
+  setUserAvatar({ avatar }) {
+    this._avatarProfile.src = avatar;
   }
 }
 

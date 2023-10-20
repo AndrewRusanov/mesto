@@ -5,6 +5,11 @@ export default class Api {
     this.headers = headers;
   }
 
+  // универсальный метод для получения результата запроса
+  _getResponse = respone => {
+    return respone.ok ? respone.json() : Promise.reject(`Ошибка: ${respone.status}`);
+  };
+
   // Загрузка информации о пользователе с сервера
   getUserInformation() {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -12,15 +17,7 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Загрузак карточек с сервера
@@ -30,15 +27,7 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Редактирование профиля
@@ -50,15 +39,7 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name, about })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Добавление новой карточки
@@ -70,15 +51,7 @@ export default class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ name, link })
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Удаление карточки
@@ -89,15 +62,7 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Постановка лайка
@@ -108,15 +73,7 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   // Удаление лайка
@@ -127,15 +84,7 @@ export default class Api {
         authorization: this._token,
         'Content-Type': 'application/json'
       }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          Promise.reject(`Ошибка: ${res.status}`);
-        }
-      })
-      .catch(err => console.log(err));
+    }).then(res => this._getResponse(res));
   }
 
   //Метод выбора поставить лайк или снять
@@ -154,12 +103,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: link
       })
-    }).then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    }).then(res => this._getResponse(res));
   }
 }
